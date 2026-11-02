@@ -1,0 +1,30 @@
+{
+    "127.0.0.1:5000": {
+        "last_updated": 1793553907.2984216,
+        "score": -10
+    },
+    "127.0.0.1:5001": {
+        "last_reason": "healthy node",
+        "last_updated": 1793626519.518454,
+        "score": -100
+    },
+    "127.0.0.1:5002": {
+        "last_reason": "healthy node",
+        "last_updated": 1793626527.791418,
+        "score": -100
+    },
+    "127.0.0.1:5003": {
+        "last_reason": "healthy node",
+        "last_updated": 1793626529.2705297,
+        "score": -100
+    },
+    "127.0.0.1:5004": {
+        "last_reason": "healthy node",
+        "last_updated": 1793626528.902765,
+        "score": -90
+    },
+    "seed.example:443": {
+        "last_updated": 1793553924.6312404,
+        "score": -20
+    }
+}

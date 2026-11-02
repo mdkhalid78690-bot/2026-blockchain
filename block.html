@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>KWD Block Explorer</title>
+<style>
+body{background:#111;color:white;font-family:Arial;padding:20px;}
+input{padding:8px;}
+button{padding:8px;}
+table{width:100%;border-collapse:collapse;table-layout:fixed;}
+th,td{border:1px solid #555;padding:8px;word-break:break-all;}
+#txTable td{max-width:300px;}
+th{background:#222;}
+pre{background:#222;padding:15px;}
+.stats-container{display:flex;gap:20px;margin-bottom:30px;flex-wrap:wrap;}
+.card{background:#222;padding:20px;border-radius:10px;min-width:200px;text-align:center;cursor:pointer;transition:0.3s;}
+.card:hover{transform:scale(1.05);background:#333;}
+</style>
+</head>
+<body>
+    <h1>KWD Block Explorer</h1>
+    <div id="stats"></div>
+    <div style="margin: 16px 0;">
+        <input type="number" id="blockNumber" placeholder="Block Number">
+        <button onclick="searchBlock()">Search Block</button>
+        <button onclick="latestBlock()">Latest Block</button>
+    </div>
+
+    <h2>Block Data</h2>
+    <h3>Block Index</h3><p id="index"></p>
+    <h3>Hash</h3><p id="hash"></p>
+    <h3>Previous Hash</h3><p id="prevHash"></p>
+    <h3>Proof</h3><p id="proof"></p>
+    <h3>Timestamp</h3><p id="timestamp"></p>
+    <h3>Transactions</h3>
+    <table id="txTable">
+        <tr><th>FROM</th><th>TO</th><th>AMOUNT</th></tr>
+    </table>
+
+    <script>
+        const apiBase = (window.location.origin && window.location.origin !== "null")
+            ? window.location.origin
+            : "http://127.0.0.1:5000";
+
+        async function requestJson(path) {
+            const response = await fetch(`${apiBase}${path}`);
+            if (!response.ok) {
+                const data = await response.json().catch(() => ({}));
+                throw new Error(data.error || `Request failed with ${response.status}`);
+            }
+            return response.json();
+        }
+
+        async function loadStats() {
+            try {
+                const stats = await requestJson("/blockstats");
+                document.getElementById("stats").innerHTML = `
+                    <div class="stats-container">
+                        <div class="card" onclick="latestBlock()"><h2>${stats.total_blocks || 0}</h2><p>Total Blocks</p></div>
+                        <div class="card"><h2>${stats.latest_block || 0}</h2><p>Latest Block</p></div>
+                        <div class="card"><h2>${stats.difficulty || 0}</h2><p>Difficulty</p></div>
+                    </div>`;
+            } catch (error) {
+                document.getElementById("stats").innerText = `Stats load failed: ${error.message}`;
+            }
+        }
+
+        async function searchBlock() {
+            const blockNumber = document.getElementById("blockNumber").value;
+            if (!blockNumber) return;
+            try {
+                const data = await requestJson(`/block/${blockNumber}`);
+                document.getElementById("index").innerText = data.index;
+                const hashValue = data.hash || "";
+                document.getElementById("hash").innerHTML = hashValue
+                    ? `<a href="#" onclick="openHashLookup('${hashValue}')">${hashValue}</a>`
+                    : "";
+                const prevHash = data.previous_hash || "";
+                document.getElementById("prevHash").innerHTML = prevHash
+                    ? `<a href="#" onclick="openHashLookup('${prevHash}')">${prevHash}</a>`
+                    : "";
+                document.getElementById("proof").innerText = data.proof;
+                const date = new Date((data.timestamp || 0) * 1000);
+                document.getElementById("timestamp").innerText = date.toLocaleString();
+                const table = document.getElementById("txTable");
+                table.innerHTML = '<tr><th>FROM</th><th>TO</th><th>AMOUNT</th></tr>' +
+                    (data.transactions || []).map(tx => `<tr><td>${tx.from || ""}</td><td>${tx.to || ""}</td><td>${tx.amount || 0}</td></tr>`).join("");
+            } catch (error) {
+                document.getElementById("index").innerText = `Block lookup failed: ${error.message}`;
+            }
+        }
+
+        async function openHashLookup(hash) {
+            if (!hash) return;
+            try {
+                const data = await requestJson(`/search/${encodeURIComponent(hash)}`);
+                if (data && data.data) {
+                    document.getElementById("blockNumber").value = data.data.index || "";
+                    document.getElementById("index").innerText = data.data.index;
+                    const hashValue = data.data.hash || "";
+                    document.getElementById("hash").innerHTML = hashValue
+                        ? `<a href="#" onclick="openHashLookup('${hashValue}')">${hashValue}</a>`
+                        : "";
+                    const prevHash = data.data.previous_hash || "";
+                    document.getElementById("prevHash").innerHTML = prevHash
+                        ? `<a href="#" onclick="openHashLookup('${prevHash}')">${prevHash}</a>`
+                        : "";
+                    document.getElementById("proof").innerText = data.data.proof;
+                    const date = new Date((data.data.timestamp || 0) * 1000);
+                    document.getElementById("timestamp").innerText = date.toLocaleString();
+                    const table = document.getElementById("txTable");
+                    table.innerHTML = '<tr><th>FROM</th><th>TO</th><th>AMOUNT</th></tr>' +
+                        (data.data.transactions || []).map(tx => `<tr><td>${tx.from || ""}</td><td>${tx.to || ""}</td><td>${tx.amount || 0}</td></tr>`).join("");
+                } else {
+                    document.getElementById("index").innerText = "Block not found";
+                }
+            } catch (error) {
+                document.getElementById("index").innerText = `Hash lookup failed: ${error.message}`;
+            }
+        }
+
+        async function latestBlock() {
+            try {
+                const data = await requestJson("/latest_block");
+                document.getElementById("blockNumber").value = data.index || "";
+                document.getElementById("index").innerText = data.index;
+                const hashValue = data.hash || "";
+                document.getElementById("hash").innerHTML = hashValue
+                    ? `<a href="#" onclick="openHashLookup('${hashValue}')">${hashValue}</a>`
+                    : "";
+                const prevHash = data.previous_hash || "";
+                document.getElementById("prevHash").innerHTML = prevHash
+                    ? `<a href="#" onclick="openHashLookup('${prevHash}')">${prevHash}</a>`
+                    : "";
+                document.getElementById("proof").innerText = data.proof;
+                const date = new Date((data.timestamp || 0) * 1000);
+                document.getElementById("timestamp").innerText = date.toLocaleString();
+                const table = document.getElementById("txTable");
+                table.innerHTML = '<tr><th>FROM</th><th>TO</th><th>AMOUNT</th></tr>' +
+                    (data.transactions || []).map(tx => `<tr><td>${tx.from || ""}</td><td>${tx.to || ""}</td><td>${tx.amount || 0}</td></tr>`).join("");
+            } catch (error) {
+                document.getElementById("index").innerText = `Latest block load failed: ${error.message}`;
+            }
+        }
+
+        loadStats();
+        latestBlock();
+    </script>
+</body>
+</html>
+        let tx;
+
+        if(item.transaction){
+            tx = item.transaction;
+        }
+        else{
+            tx = item;
+        }
+
+        table.innerHTML += `
+        <tr>
+            <td>${tx.from}</td>
+            <td>${tx.to}</td>
+            <td>${tx.amount}</td>
+        </tr>
+        `;
+    });
+
+}
+
+function previousBlock() {
+
+    let current =
+    parseInt(
+    document.getElementById("blockNumber").value
+    );
+
+    if(current > 1){
+
+        current--;
+
+        document.getElementById("blockNumber").value =
+        current;
+
+        searchBlock();
+    }
+}
+
+function nextBlock() {
+
+    let current =
+    parseInt(
+    document.getElementById("blockNumber").value
+    );
+
+    current++;
+
+    document.getElementById("blockNumber").value =
+    current;
+
+    searchBlock();
+}
+
+async function latestBlock(){
+
+    const response =
+    await fetch(
+    "http://127.0.0.1:5000/latest_block"
+    );
+
+    const data =
+    await response.json();
+
+    document.getElementById("blockNumber").value =
+    data.index;
+
+    searchBlock();
+}
+
+loadStats();
+
+function latestBlock(){
+
+    fetch("http://127.0.0.1:5000/latest_block")
+    .then(response => response.json())
+    .then(data => {
+
+        document.getElementById("blockNumber").value =
+        data.index;
+
+        searchBlock();
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

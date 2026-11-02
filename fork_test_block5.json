@@ -1,0 +1,21 @@
+{
+    "index": 5,
+    "timestamp": 1782304693.7953157,
+    "transactions": [
+        {
+            "transaction": {
+                "from": "NETWORK",
+                "to": "a192baf8d91918c436979a1a387c48e78e819b9c5751f72454bf78a4e7376e06",
+                "amount": 50.0,
+                "base_reward": 50.0,
+                "fees": 0,
+                "timestamp": 1782304693.7953157
+            },
+            "signature": "MINING_REWARD"
+        }
+    ],
+    "proof": 1,
+    "difficulty": 1,
+    "previous_hash": "0e730b1eba95bb11794df34ace25526b3059fe170c4bc9c6b76c95940eb3ba93",
+    "hash": "c8bacc3126894384c61ec68baf45ffa35ce4c728e869d8243736388fd3e1f3f3"
+}

@@ -1,0 +1,11 @@
+﻿venv/
+.venv/
+__pycache__/
+.pytest_cache/
+legacy_archive/
+backup/
+node_500*/
+*.pyc
+*.tmp
+*.backup-*
+*.log

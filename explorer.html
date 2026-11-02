@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>KWD Explorer</title>
+<style>
+:root{
+    color-scheme:dark;
+    --bg:#0f1115;
+    --panel:#181b22;
+    --panel-2:#20242d;
+    --text:#f2f5f8;
+    --muted:#99a4b3;
+    --line:#313744;
+    --accent:#30c48d;
+    --warn:#f6bd4f;
+}
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial, sans-serif;
+}
+header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:18px 22px;
+    border-bottom:1px solid var(--line);
+    background:#12151b;
+}
+h1,h2,h3{margin:0}
+h1{font-size:24px}
+h2{font-size:16px;color:var(--muted);font-weight:600}
+main{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    min-height:calc(100vh - 68px);
+}
+aside{
+    border-right:1px solid var(--line);
+    padding:18px;
+    background:#12151b;
+}
+section{padding:18px}
+.grid{
+    display:grid;
+    grid-template-columns:repeat(9,minmax(105px,1fr));
+    gap:12px;
+    margin-bottom:18px;
+}
+.stat,.panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+}
+.stat{padding:14px}
+.stat strong{display:block;font-size:22px;margin-top:8px}
+.panel{padding:14px;margin-bottom:16px}
+.row{display:flex;gap:8px}
+input{
+    width:100%;
+    padding:10px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    background:#0c0e12;
+    color:var(--text);
+}
+button{
+    border:0;
+    border-radius:6px;
+    padding:10px 12px;
+    background:var(--accent);
+    color:#07120d;
+    font-weight:700;
+    cursor:pointer;
+}
+button.secondary{
+    background:var(--panel-2);
+    color:var(--text);
+    border:1px solid var(--line);
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+th,td{
+    border-bottom:1px solid var(--line);
+    padding:9px 8px;
+    text-align:left;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+th{color:var(--muted);font-size:12px;text-transform:uppercase}
+a{color:var(--accent);text-decoration:none}
+pre{
+    overflow:auto;
+    max-height:260px;
+    background:#0c0e12;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:12px;
+}
+.muted{color:var(--muted)}
+.status{color:var(--warn)}
+@media(max-width:900px){
+    main{grid-template-columns:1fr}
+    aside{border-right:0;border-bottom:1px solid var(--line)}
+    .grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>KWD Explorer</h1>
+    <button class="secondary" onclick="refreshAll()">Refresh</button>
+</header>
+
+<main>
+<aside>
+    <div class="panel">
+        <h2>Search</h2>
+        <div class="row" style="margin-top:10px">
+            <input id="query" placeholder="Block, wallet, or txid">
+            <button onclick="search()">Go</button>
+        </div>
+        <pre id="searchResult" class="muted">Ready</pre>
+    </div>
+
+    <div class="panel">
+        <h2>Wallet</h2>
+        <div class="row" style="margin-top:10px">
+            <input id="wallet" placeholder="Wallet address">
+            <button onclick="loadWallet()">Open</button>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <button class="secondary" onclick="backupWallet()">Backup Wallet</button>
+        </div>
+        <h3 id="balance" style="margin-top:12px">0 KWD</h3>
+        <table id="walletTxTable">
+            <tr><th>Block</th><th>Amount</th></tr>
+        </table>
+    </div>
+
+    <div class="panel">
+        <h2>New Wallet</h2>
+        <button style="margin-top:10px" onclick="generateWallet()">Generate</button>
+        <pre id="newWallet" class="muted">No wallet yet</pre>
+    </div>
+
+    <div class="panel">
+        <h2>Import Wallet</h2>
+        <p class="muted" style="margin:10px 0 8px">Paste private key</p>
+        <input id="importPrivateKey" placeholder="Private key">
+        <button style="margin-top:10px" onclick="importWalletFromKey()">Import Wallet</button>
+        <pre id="importWalletResult" class="muted" style="margin-top:10px">Restore wallet instantly.</pre>
+    </div>
+</aside>
+
+<section>
+    <div class="grid">
+        <div class="stat"><span class="muted">Blocks</span><strong id="blocks">0</strong></div>
+        <div class="stat"><span class="muted">Transactions</span><strong id="transactions">0</strong></div>
+        <div class="stat"><span class="muted">Wallets</span><strong id="wallets">0</strong></div>
+        <div class="stat"><span class="muted">Peers</span><strong id="peers">0</strong></div>
+        <div class="stat"><span class="muted">Supply</span><strong id="supply">0</strong></div>
+        <div class="stat"><span class="muted">Mempool</span><strong id="mempoolCount">0</strong></div>
+        <div class="stat"><span class="muted">Work</span><strong id="chainWork">0</strong></div>
+        <div class="stat"><span class="muted">Orphans</span><strong id="orphans">0</strong></div>
+        <div class="stat"><span class="muted">Next Diff</span><strong id="nextDifficulty">0</strong></div>
+    </div>
+
+    <div class="panel">
+        <h2>Chain Status <span id="validStatus" class="status"></span></h2>
+        <pre id="nodeInfo">Loading...</pre>
+        <pre id="latestBlock">Loading...</pre>
+    </div>
+
+    <div class="panel">
+        <h2>Peer Health</h2>
+        <table id="peerTable">
+            <tr><th>Peer</th><th>Online</th><th>Height</th><th>Latency</th><th>Valid</th></tr>
+        </table>
+    </div>
+
+    <div class="panel">
+        <h2>Charts</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
+            <div><h3>Supply</h3><canvas id="supplyChart" height="140"></canvas></div>
+            <div><h3>Blocks</h3><canvas id="blockChart" height="140"></canvas></div>
+            <div><h3>Difficulty</h3><canvas id="difficultyChart" height="140"></canvas></div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2>Latest Blocks</h2>
+        <table id="blocksTable">
+            <tr><th>Height</th><th>Hash</th><th>Txs</th><th>Difficulty</th></tr>
+        </table>
+    </div>
+
+    <div class="panel">
+        <h2>Latest Transactions</h2>
+        <table id="txTable">
+            <tr><th>Block</th><th>From</th><th>To</th><th>Amount</th><th>Txid</th></tr>
+        </table>
+    </div>
+
+    <div class="panel">
+        <h2>Mempool</h2>
+        <table id="mempoolTable">
+            <tr><th>From</th><th>To</th><th>Amount</th><th>Txid</th></tr>
+        </table>
+    </div>
+
+    <div class="panel">
+        <h2>Rich List</h2>
+        <table id="richTable">
+            <tr><th>Rank</th><th>Wallet</th><th>Balance</th><th>Tx Count</th></tr>
+        </table>
+    </div>
+</section>
+</main>
+
+<script>
+const apiBase = (window.location.origin && window.location.origin !== "null")
+    ? window.location.origin
+    : "http://127.0.0.1:5000";
+
+function short(value){
+    if(!value) return "";
+    return String(value).slice(0,12) + "...";
+}
+
+function linkWallet(value){
+    return `<a href="#" onclick="openWallet('${value}')">${short(value)}</a>`;
+}
+
+function linkBlockHash(value){
+    if(!value) return "";
+    return `<a href="#" onclick="openBlockByHash('${value}')">${short(value)}</a>`;
+}
+
+async function getJson(path){
+    const response = await fetch(`${apiBase}${path}`);
+    if(!response.ok){
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.error || `Request failed with ${response.status}`);
+    }
+    return response.json();
+}
+
+async function refreshAll(){
+    try {
+        const [stats, validate, latest, blocks, txs, mempool, rich, nodeInfo, mempoolStats, charts] = await Promise.all([
+            getJson("/network_stats"),
+            getJson("/validate"),
+            getJson("/latest_block"),
+            getJson("/latest_blocks"),
+            getJson("/latest_transactions"),
+            getJson("/mempool"),
+            getJson("/richlist"),
+            getJson("/node_info"),
+            getJson("/mempool_stats"),
+            getJson("/charts")
+        ]);
+
+        document.getElementById("blocks").innerText = stats.blocks || 0;
+        document.getElementById("transactions").innerText = stats.transactions || 0;
+        document.getElementById("wallets").innerText = stats.wallets || 0;
+        document.getElementById("peers").innerText = stats.peers || 0;
+        document.getElementById("supply").innerText = stats.supply || 0;
+        document.getElementById("mempoolCount").innerText = stats.mempool || 0;
+        document.getElementById("chainWork").innerText = stats.chain_work || 0;
+        document.getElementById("orphans").innerText = stats.orphans || 0;
+        document.getElementById("nextDifficulty").innerText = stats.next_difficulty || 0;
+        document.getElementById("validStatus").innerText =
+            validate.valid ? "Valid" : `Invalid: ${validate.error}`;
+        document.getElementById("nodeInfo").innerText =
+            JSON.stringify({
+                node: nodeInfo.node_id,
+                height: nodeInfo.height,
+                chain_work: nodeInfo.chain_work,
+                next_difficulty: nodeInfo.next_difficulty,
+                orphans: nodeInfo.orphans,
+                latest_hash: nodeInfo.latest_hash,
+                pending_fees: mempoolStats.pending_fees
+            }, null, 2);
+        document.getElementById("latestBlock").innerText =
+            JSON.stringify(latest, null, 2);
+
+        document.getElementById("peerTable").innerHTML =
+            "<tr><th>Peer</th><th>Online</th><th>Height</th><th>Latency</th><th>Valid</th></tr>" +
+            (stats.peer_health || []).map(peer => `
+                <tr>
+                    <td>${peer.peer}</td>
+                    <td>${peer.online ? "Yes" : "No"}</td>
+                    <td>${peer.height || ""}</td>
+                    <td>${peer.latency_ms ? peer.latency_ms + " ms" : ""}</td>
+                    <td>${peer.valid === undefined ? "" : peer.valid}</td>
+                </tr>
+            `).join("");
+
+        document.getElementById("blocksTable").innerHTML =
+            "<tr><th>Height</th><th>Hash</th><th>Txs</th><th>Difficulty</th></tr>" +
+            blocks.slice().reverse().map(block => `
+                <tr>
+                    <td><a href="#" onclick="openBlock(${block.index})">${block.index}</a></td>
+                    <td>${linkBlockHash(block.hash)}</td>
+                    <td>${(block.transactions || []).length}</td>
+                    <td>${block.difficulty || 0}</td>
+                </tr>
+            `).join("");
+
+        document.getElementById("txTable").innerHTML =
+            "<tr><th>Block</th><th>From</th><th>To</th><th>Amount</th><th>Txid</th></tr>" +
+            txs.map(tx => `
+                <tr>
+                    <td>${tx.block || ""}</td>
+                    <td>${linkWallet(tx.from)}</td>
+                    <td>${linkWallet(tx.to)}</td>
+                    <td>${tx.amount}</td>
+                    <td>${short(tx.txid)}</td>
+                </tr>
+            `).join("");
+
+        document.getElementById("mempoolTable").innerHTML =
+            "<tr><th>From</th><th>To</th><th>Amount</th><th>Txid</th></tr>" +
+            mempool.map(item => {
+                const tx = item.transaction || item;
+                return `
+                    <tr>
+                        <td>${linkWallet(tx.from)}</td>
+                        <td>${linkWallet(tx.to)}</td>
+                        <td>${tx.amount}</td>
+                        <td>${short(tx.txid)}</td>
+                    </tr>
+                `;
+            }).join("");
+
+        document.getElementById("richTable").innerHTML =
+            "<tr><th>Rank</th><th>Wallet</th><th>Balance</th><th>Tx Count</th></tr>" +
+            rich.slice(0,10).map((item,index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${linkWallet(item.wallet)}</td>
+                    <td>${item.balance}</td>
+                    <td>${item.tx_count}</td>
+                </tr>
+            `).join("");
+
+        renderChart("supplyChart", charts.supply || [], "Supply");
+        renderChart("blockChart", charts.blocks || [], "Blocks");
+        renderChart("difficultyChart", charts.difficulty || [], "Difficulty");
+    } catch (error) {
+        document.getElementById("searchResult").innerText = `Explorer load failed: ${error.message}`;
+        document.getElementById("validStatus").innerText = "Error";
+    }
+}
+
+function renderChart(canvasId, points, label){
+    const canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const width = canvas.width = canvas.clientWidth || 220;
+    const height = canvas.height = 140;
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = "#313744";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(20, height - 20);
+    ctx.lineTo(width - 20, height - 20);
+    ctx.moveTo(20, 20);
+    ctx.lineTo(20, height - 20);
+    ctx.stroke();
+    if(!points.length){
+        ctx.fillStyle = "#99a4b3";
+        ctx.font = "12px Arial";
+        ctx.fillText("No data", 24, height / 2);
+        return;
+    }
+    const values = points.map(point => Number(point.y || 0));
+    const max = Math.max(...values, 1);
+    const min = Math.min(...values, 0);
+    const span = Math.max(max - min, 1);
+    ctx.strokeStyle = "#30c48d";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    points.forEach((point, index) => {
+        const x = 20 + ((index / Math.max(points.length - 1, 1)) * (width - 40));
+        const y = height - 20 - (((Number(point.y || 0) - min) / span) * (height - 40));
+        if(index === 0){ ctx.moveTo(x, y); } else { ctx.lineTo(x, y); }
+    });
+    ctx.stroke();
+    ctx.fillStyle = "#f2f5f8";
+    ctx.font = "12px Arial";
+    ctx.fillText(label, 24, 14);
+}
+
+async function loadWallet(){
+    const wallet = document.getElementById("wallet").value.trim();
+    if(!wallet) return;
+    try {
+        const [info, txs] = await Promise.all([
+            getJson(`/wallet/${wallet}`),
+            getJson(`/transactions/${wallet}`)
+        ]);
+        document.getElementById("balance").innerText = `${info.balance} KWD`;
+        document.getElementById("walletTxTable").innerHTML =
+            "<tr><th>Block</th><th>Amount</th></tr>" +
+            txs.map(tx => `<tr><td>${tx.block}</td><td>${tx.amount}</td></tr>`).join("");
+    } catch (error) {
+        document.getElementById("balance").innerText = `Error: ${error.message}`;
+    }
+}
+
+async function backupWallet(){
+    const address = document.getElementById("wallet").value.trim();
+    if(!address){
+        alert("Enter a wallet address first.");
+        return;
+    }
+    try {
+        const payload = await fetch(`${apiBase}/backup_wallet`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({address})
+        }).then(async response => {
+            const data = await response.json().catch(() => ({}));
+            if(!response.ok){
+                throw new Error(data.error || `Request failed with ${response.status}`);
+            }
+            return data;
+        });
+        const blob = new Blob([JSON.stringify(payload, null, 2)], {type: "application/json"});
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "wallet.json";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+    } catch (error) {
+        alert(`Wallet backup failed: ${error.message}`);
+    }
+}
+
+async function search(){
+    const query = document.getElementById("query").value.trim();
+    if(!query) return;
+    try {
+        const result = await getJson(`/search/${query}`);
+        document.getElementById("searchResult").innerText = JSON.stringify(result, null, 2);
+    } catch (error) {
+        document.getElementById("searchResult").innerText = `Search failed: ${error.message}`;
+    }
+}
+
+async function openBlock(index){
+    try {
+        const block = await getJson(`/block/${index}`);
+        document.getElementById("searchResult").innerText = JSON.stringify(block, null, 2);
+    } catch (error) {
+        document.getElementById("searchResult").innerText = `Block lookup failed: ${error.message}`;
+    }
+}
+
+async function openBlockByHash(hash){
+    try {
+        const result = await getJson(`/search/${encodeURIComponent(hash)}`);
+        document.getElementById("searchResult").innerText = JSON.stringify(result, null, 2);
+    } catch (error) {
+        document.getElementById("searchResult").innerText = `Block lookup failed: ${error.message}`;
+    }
+}
+
+function openWallet(wallet){
+    document.getElementById("wallet").value = wallet;
+    loadWallet();
+}
+
+async function generateWallet(){
+    try {
+        const wallet = await getJson("/generate_wallet");
+        document.getElementById("newWallet").innerText = JSON.stringify(wallet, null, 2);
+    } catch (error) {
+        document.getElementById("newWallet").innerText = `Wallet generation failed: ${error.message}`;
+    }
+}
+
+async function importWalletFromKey(){
+    const privateKey = document.getElementById("importPrivateKey").value.trim();
+    if(!privateKey){
+        document.getElementById("importWalletResult").innerText = "Please enter a private key.";
+        return;
+    }
+    try {
+        const wallet = await fetch(`${apiBase}/import_wallet`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({private_key: privateKey})
+        }).then(async response => {
+            const data = await response.json().catch(() => ({}));
+            if(!response.ok){
+                throw new Error(data.error || `Request failed with ${response.status}`);
+            }
+            return data;
+        });
+        document.getElementById("importWalletResult").innerText = JSON.stringify(wallet, null, 2);
+        document.getElementById("wallet").value = wallet.address || "";
+        loadWallet();
+    } catch (error) {
+        document.getElementById("importWalletResult").innerText = `Wallet import failed: ${error.message}`;
+    }
+}
+
+refreshAll();
+</script>
+</body>
+</html>

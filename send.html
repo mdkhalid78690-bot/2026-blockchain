@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>KWD Send Transaction</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; background: #111; color: #f5f5f5; }
+        form { max-width: 420px; background: #1c1c1c; padding: 20px; border-radius: 8px; }
+        input, button { width: 100%; padding: 10px; margin: 6px 0 12px; border-radius: 6px; border: 1px solid #444; }
+        button { background: #30c48d; color: #07120d; font-weight: 700; cursor: pointer; }
+        #result { margin-top: 12px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h2>Send KWD</h2>
+    <form id="txForm">
+        <label>From Wallet:</label>
+        <input type="text" id="from" placeholder="Optional wallet address">
+
+        <label>Private Key:</label>
+        <input type="text" id="private_key" required>
+
+        <label>To Wallet:</label>
+        <input type="text" id="to" required>
+
+        <label>Amount:</label>
+        <input type="number" id="amount" min="1" required>
+
+        <button type="submit">Send</button>
+    </form>
+    <pre id="result">Waiting for a transaction…</pre>
+
+    <script>
+        const apiBase = (window.location.origin && window.location.origin !== "null")
+            ? window.location.origin
+            : "http://127.0.0.1:5000";
+
+        document.getElementById("txForm").addEventListener("submit", async function(e){
+            e.preventDefault();
+            const payload = {
+                from: document.getElementById("from").value.trim(),
+                private_key: document.getElementById("private_key").value.trim(),
+                to: document.getElementById("to").value.trim(),
+                amount: Number(document.getElementById("amount").value)
+            };
+
+            try {
+                const response = await fetch(`${apiBase}/send_transaction`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json().catch(() => ({}));
+                const out = result.error ? `Error: ${result.error}` : `Success: ${result.message || "Transaction queued"}\nTxid: ${result.txid || "n/a"}`;
+                document.getElementById("result").innerText = out;
+            } catch (error) {
+                document.getElementById("result").innerText = `Request failed: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
