@@ -5,6 +5,15 @@ __pycache__/
 legacy_archive/
 backup/
 node_500*/
+2026 blockchain node*/
+KWD_Blockchain_Alpha*/
+build/
+dist/
+Wallet/
+*.spec
+*.zip
+*.sqlite3
+*.key
 *.pyc
 *.tmp
 *.backup-*
