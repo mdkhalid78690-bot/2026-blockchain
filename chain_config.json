@@ -63,15 +63,15 @@
     "port": 5000,
     "bootstrap_state": {
         "last_bootstrap_status": "complete",
-        "last_bootstrap_timestamp": 1793616522.5789251,
+        "last_bootstrap_timestamp": 1793781845.978616,
         "seed_added": 0,
         "discovered_peer_added": 0,
         "peer_count": 4,
         "errors": [],
         "public_keys_synced": false,
-        "public_key_count": 19,
+        "public_key_count": 20,
         "wallets_synced": false,
-        "wallet_count": 19
+        "wallet_count": 20
     },
     "peer_trust_policy": {
         "allow_public_bootstrap": true,

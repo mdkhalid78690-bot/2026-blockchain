@@ -519,5 +519,63 @@ async function importWalletFromKey(){
 
 refreshAll();
 </script>
+
+<!-- KawaidCoin (KWD) Live Network Features Toolbar -->
+<div id="kwd-features-toolbar" style="max-width:1200px;margin:16px auto;padding:16px;background:#111827;border:1px solid #1f2937;border-radius:10px;color:#e5e7eb;font-family:sans-serif;">
+  <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;color:#9ca3af;margin-bottom:4px;">KAWAIDCOIN (KWD) HALVING &amp; SUPPLY COUNTDOWN</div>
+      <div id="kwd-halving-text" style="font-size:15px;font-weight:bold;color:#10b981;">Loading KWD supply schedule...</div>
+      <div style="width:100%;height:8px;background:#374151;border-radius:4px;margin-top:6px;overflow:hidden;">
+        <div id="kwd-halving-bar" style="width:0%;height:100%;background:#10b981;"></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <input id="kwd-faucet-addr" placeholder="Paste KWD wallet address for 10 free KWD" style="padding:8px 10px;border-radius:6px;border:1px solid #374151;background:#1f2937;color:#fff;width:260px;" />
+      <button onclick="claimKwdFaucet()" style="padding:8px 14px;background:#10b981;color:#000;font-weight:bold;border:none;border-radius:6px;cursor:pointer;">Claim 10 KWD Faucet</button>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+      <input id="kwd-spv-txid" placeholder="Paste KWD txid to verify Merkle Proof" style="padding:8px 10px;border-radius:6px;border:1px solid #374151;background:#1f2937;color:#fff;width:250px;" />
+      <button onclick="checkKwdSpv()" style="padding:8px 14px;background:#3b82f6;color:#fff;font-weight:bold;border:none;border-radius:6px;cursor:pointer;">Verify KWD Proof</button>
+    </div>
+  </div>
+  <pre id="kwd-feature-output" style="display:none;margin-top:12px;padding:10px;background:#030712;border:1px solid #374151;border-radius:6px;color:#a7f3d0;font-size:12px;overflow-x:auto;"></pre>
+</div>
+<script>
+async function loadKwdHalving() {
+  try {
+    const r = await fetch('/halving_info');
+    const d = await r.json();
+    document.getElementById('kwd-halving-text').innerText =
+      `KWD Block Reward: ${d.current_reward} KWD -> ${d.next_reward} KWD in ${d.blocks_until_halving} blocks (Block ${d.current_height}/${d.next_halving_height}) | Mined: ${d.total_supply_mined} / ${d.max_supply} KWD`;
+    const pct = Math.min(100, ((d.current_height % 100) / 100) * 100);
+    document.getElementById('kwd-halving-bar').style.width = pct + '%';
+  } catch (e) {}
+}
+async function claimKwdFaucet() {
+  const addr = document.getElementById('kwd-faucet-addr').value.trim();
+  const out = document.getElementById('kwd-feature-output');
+  out.style.display = 'block';
+  if (!addr) { out.innerText = 'Please enter or generate a KWD wallet address first.'; return; }
+  out.innerText = 'Sending 10 KWD from KWD Network Faucet...';
+  const r = await fetch('/faucet/' + encodeURIComponent(addr), { method: 'POST' });
+  const d = await r.json();
+  out.innerText = JSON.stringify(d, null, 2);
+  if (d.txid) document.getElementById('kwd-spv-txid').value = d.txid;
+}
+async function checkKwdSpv() {
+  const txid = document.getElementById('kwd-spv-txid').value.trim();
+  const out = document.getElementById('kwd-feature-output');
+  out.style.display = 'block';
+  if (!txid) { out.innerText = 'Please enter a KWD transaction ID (txid) to verify.'; return; }
+  out.innerText = 'Checking KWD cryptographic Merkle proof...';
+  const r = await fetch('/merkle_proof/' + encodeURIComponent(txid));
+  const d = await r.json();
+  out.innerText = JSON.stringify(d, null, 2);
+}
+loadKwdHalving();
+setInterval(loadKwdHalving, 10000);
+</script>
+
 </body>
 </html>

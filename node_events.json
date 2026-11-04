@@ -1,22 +1,5 @@
 [
     {
-        "timestamp": 1783105658.6008008,
-        "type": "bootstrap",
-        "message": "Bootstrap completed",
-        "details": {
-            "last_bootstrap_status": "complete",
-            "last_bootstrap_timestamp": 1783105658.5672033,
-            "seed_added": 0,
-            "discovered_peer_added": 0,
-            "peer_count": 1,
-            "errors": [],
-            "public_keys_synced": false,
-            "public_key_count": 9,
-            "wallets_synced": false,
-            "wallet_count": 12
-        }
-    },
-    {
         "timestamp": 1783107859.6064386,
         "type": "bootstrap",
         "message": "Bootstrap completed",
@@ -847,6 +830,23 @@
             "public_key_count": 19,
             "wallets_synced": false,
             "wallet_count": 19
+        }
+    },
+    {
+        "timestamp": 1793781845.9895978,
+        "type": "bootstrap",
+        "message": "Bootstrap completed",
+        "details": {
+            "last_bootstrap_status": "complete",
+            "last_bootstrap_timestamp": 1793781845.978616,
+            "seed_added": 0,
+            "discovered_peer_added": 0,
+            "peer_count": 4,
+            "errors": [],
+            "public_keys_synced": false,
+            "public_key_count": 20,
+            "wallets_synced": false,
+            "wallet_count": 20
         }
     }
 ]
