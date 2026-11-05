@@ -3306,6 +3306,206 @@ def _start_runtime_services(port, tls_context):
     return server_thread
 
 
+
+@app.route("/api/exchange/book", methods=["GET"])
+def exchange_book():
+    data = read_json("exchange_data.json", {"last_price": 0.50, "orders": [], "trades": []})
+    return data
+
+
+@app.route("/api/exchange/order", methods=["POST"])
+def create_exchange_order():
+    body = request.get_json(force=True, silent=True) or {}
+    side = str(body.get("side", "SELL")).upper()
+    address = str(body.get("address", "")).strip()
+    amount = float(body.get("amount", 0))
+    price = float(body.get("price", 0))
+    if side not in ("BUY", "SELL") or not address or amount <= 0 or price <= 0:
+        return {"error": "Provide valid side (BUY/SELL), KWD wallet address, amount, and USD price"}, 400
+    data = read_json("exchange_data.json", {"last_price": 0.50, "orders": [], "trades": []})
+    order = {
+        "id": int(time.time() * 1000),
+        "side": side,
+        "address": address,
+        "amount": round(amount, 4),
+        "price": round(price, 4),
+        "total_usd": round(amount * price, 4),
+        "status": "OPEN",
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
+    }
+    data["orders"].insert(0, order)
+    write_json("exchange_data.json", data)
+    return {"message": f"Posted {side} order for {amount} KWD @ ${price}", "order": order}
+
+
+@app.route("/api/exchange/fill/<int:order_id>", methods=["POST"])
+def fill_exchange_order(order_id):
+    body = request.get_json(force=True, silent=True) or {}
+    taker_address = str(body.get("taker_address", "")).strip()
+    private_key = str(body.get("private_key", "")).strip()
+    data = read_json("exchange_data.json", {"last_price": 0.50, "orders": [], "trades": []})
+    target = next((o for o in data["orders"] if o["id"] == order_id and o["status"] == "OPEN"), None)
+    if not target:
+        return {"error": "Order not found or already filled"}, 404
+    txid_val = "OTC-SETTLED"
+    if private_key:
+        chain = load_chain()
+        mempool_data = load_mempool()
+        recipient = target["address"] if target["side"] == "BUY" else taker_address
+        if not recipient:
+            return {"error": "Taker wallet address required"}, 400
+        signed_tx = create_signed_transaction(private_key, recipient, float(target["amount"]), fee=1.0, chain=chain, mempool=mempool_data)
+        valid, err = validate_transaction(signed_tx, chain, mempool_data)
+        if not valid:
+            return {"error": f"On-chain KWD payment failed: {err}"}, 400
+        mempool_data.append(signed_tx)
+        save_mempool(mempool_data, reason="exchange trade settlement")
+        broadcast_transaction(signed_tx)
+        txid_val = tx_id(signed_tx)
+    target["status"] = "FILLED"
+    data["last_price"] = target["price"]
+    trade = {
+        "order_id": target["id"],
+        "side": target["side"],
+        "amount": target["amount"],
+        "price": target["price"],
+        "total_usd": target["total_usd"],
+        "maker": target["address"],
+        "taker": taker_address or "Market Participant",
+        "txid": txid_val,
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime()),
+    }
+    data["trades"].insert(0, trade)
+    write_json("exchange_data.json", data)
+    return {"message": "Order filled!", "trade": trade}
+
+
+@app.route("/exchange")
+def kwd_exchange_page():
+    return '''<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>KWD Exchange ? KawaidCoin Orderbook</title>
+  <style>
+    body { background:#0b0f19; color:#e5e7eb; font-family:sans-serif; margin:0; padding:24px; }
+    .wrap { max-width:1100px; margin:0 auto; }
+    .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px; }
+    .card { background:#111827; border:1px solid #1f2937; border-radius:10px; padding:16px; margin-bottom:16px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px; }
+    input, select, button { padding:9px 12px; border-radius:6px; border:1px solid #374151; background:#1f2937; color:#fff; width:100%; box-sizing:border-box; margin-bottom:10px; }
+    button { background:#10b981; color:#000; font-weight:bold; border:none; cursor:pointer; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th, td { text-align:left; padding:8px; border-bottom:1px solid #1f2937; }
+    .buy { color:#10b981; font-weight:bold; }
+    .sell { color:#ef4444; font-weight:bold; }
+    a.btn { padding:8px 14px; background:#374151; color:#fff; text-decoration:none; border-radius:6px; font-size:14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h2 style="margin:0;">KawaidCoin (KWD) Peer-to-Peer Exchange</h2>
+        <div style="color:#9ca3af;font-size:14px;">Live Orderbook &amp; On-Chain Trade Settlement</div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <div class="card" style="margin:0;padding:10px 16px;">
+          <span style="color:#9ca3af;font-size:12px;">LAST KWD PRICE</span>
+          <div id="last-price" style="font-size:22px;font-weight:bold;color:#10b981;">$0.50</div>
+        </div>
+        <a class="btn" href="/explorer">Back to KWD Explorer</a>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3 style="margin-top:0;">Post KWD Buy / Sell Offer</h3>
+        <select id="o-side">
+          <option value="SELL">SELL KWD</option>
+          <option value="BUY">BUY KWD</option>
+        </select>
+        <input id="o-addr" placeholder="Your KWD Wallet Address" />
+        <input id="o-amt" type="number" step="0.1" placeholder="Amount of KWD (e.g. 25)" />
+        <input id="o-price" type="number" step="0.01" placeholder="Price per KWD in USD (e.g. 0.50)" />
+        <button onclick="postOrder()">Post Offer to Orderbook</button>
+        <div id="o-msg" style="font-size:13px;color:#a7f3d0;"></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;">Open Orderbook Offers</h3>
+        <table>
+          <thead><tr><th>Side</th><th>Amount</th><th>Price</th><th>Total</th><th>Action</th></tr></thead>
+          <tbody id="orders-body"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0;">Recent Filled Trades</h3>
+      <table>
+        <thead><tr><th>Time</th><th>Side</th><th>Amount</th><th>Price</th><th>Total</th><th>Settlement TXID</th></tr></thead>
+        <tbody id="trades-body"></tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+    async function loadBook() {
+      const r = await fetch('/api/exchange/book');
+      const d = await r.json();
+      document.getElementById('last-price').innerText = '$' + Number(d.last_price || 0.50).toFixed(2);
+      const ob = document.getElementById('orders-body');
+      const openOrders = (d.orders || []).filter(o => o.status === 'OPEN');
+      ob.innerHTML = openOrders.length ? openOrders.map(o => `
+        <tr>
+          <td class="${o.side === 'BUY' ? 'buy' : 'sell'}">${o.side}</td>
+          <td>${o.amount} KWD</td>
+          <td>$${o.price}</td>
+          <td>$${o.total_usd}</td>
+          <td><button style="padding:4px 8px;margin:0;width:auto;" onclick="fillOrder(${o.id})">Fill Trade</button></td>
+        </tr>`).join('') : '<tr><td colspan="5" style="color:#6b7280;">No open offers yet. Post the first KWD offer!</td></tr>';
+      const tb = document.getElementById('trades-body');
+      tb.innerHTML = (d.trades || []).length ? d.trades.map(t => `
+        <tr>
+          <td>${t.timestamp}</td>
+          <td class="${t.side === 'BUY' ? 'buy' : 'sell'}">${t.side}</td>
+          <td>${t.amount} KWD</td>
+          <td>$${t.price}</td>
+          <td>$${t.total_usd}</td>
+          <td style="font-family:monospace;">${String(t.txid).slice(0, 18)}...</td>
+        </tr>`).join('') : '<tr><td colspan="6" style="color:#6b7280;">No trades filled yet.</td></tr>';
+    }
+    async function postOrder() {
+      const side = document.getElementById('o-side').value;
+      const address = document.getElementById('o-addr').value;
+      const amount = document.getElementById('o-amt').value;
+      const price = document.getElementById('o-price').value;
+      const r = await fetch('/api/exchange/order', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({side, address, amount, price})
+      });
+      const d = await r.json();
+      document.getElementById('o-msg').innerText = d.message || d.error;
+      loadBook();
+    }
+    async function fillOrder(id) {
+      const taker_address = prompt('Enter your KWD wallet address to settle this trade:');
+      if (!taker_address) return;
+      const private_key = prompt('Optional: Paste your KWD private key to settle on-chain (or leave blank for OTC match):') || '';
+      const r = await fetch('/api/exchange/fill/' + id, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({taker_address, private_key})
+      });
+      const d = await r.json();
+      alert(d.message || d.error);
+      loadBook();
+    }
+    loadBook();
+    setInterval(loadBook, 8000);
+  </script>
+</body>
+</html>'''
+
+
 if __name__ == "__main__":
     config = read_json("node_config.json", {})
     port = int(os.environ.get("KWD_PORT", config.get("port", 5000)))
