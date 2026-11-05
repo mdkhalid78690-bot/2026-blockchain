@@ -19,3 +19,4 @@ Wallet/
 *.backup-*
 *.log
 \nwallet*.json\nwallets.json\n
+\nminer_wallet.json\n

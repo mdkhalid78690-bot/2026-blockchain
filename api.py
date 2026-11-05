@@ -3506,6 +3506,13 @@ def kwd_exchange_page():
 </html>'''
 
 
+
+@app.route("/download/miner", methods=["GET"])
+def download_public_miner():
+    from flask import send_file
+    return send_file("miner.py", as_attachment=True, download_name="miner.py")
+
+
 if __name__ == "__main__":
     config = read_json("node_config.json", {})
     port = int(os.environ.get("KWD_PORT", config.get("port", 5000)))
