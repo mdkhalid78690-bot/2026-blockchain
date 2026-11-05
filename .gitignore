@@ -10,6 +10,9 @@ KWD_Blockchain_Alpha*/
 build/
 dist/
 Wallet/
+wallet*.json
+wallets.json
+miner_wallet.json
 *.spec
 *.zip
 *.sqlite3
@@ -18,5 +21,3 @@ Wallet/
 *.tmp
 *.backup-*
 *.log
-\nwallet*.json\nwallets.json\n
-\nminer_wallet.json\n
