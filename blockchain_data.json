@@ -699,5 +699,27 @@
         "difficulty": 2,
         "previous_hash": "699f556159c4d476f031f70135ca9e4c31099ad00e818df3f26ff8f07b69fd77",
         "hash": "a38ad6fb24b5845c516721a65b25fa3ecd07fe164928f27c4cdd42ac88b9d8b2"
+    },
+    {
+        "index": 31,
+        "timestamp": 1793901875.4794235,
+        "transactions": [
+            {
+                "transaction": {
+                    "from": "NETWORK",
+                    "to": "c37d9232224462f5880b7be40b69d289f41f00e5",
+                    "amount": 50.0,
+                    "base_reward": 50.0,
+                    "fees": 0.0,
+                    "timestamp": 1793901875.4784226
+                },
+                "signature": "MINING_REWARD"
+            }
+        ],
+        "merkle_root": "8e6ff13fbd231663ae6fe6e5cd0d2e918bd53f7c8581804db9bac6ae06ae3ca3",
+        "proof": 26,
+        "difficulty": 1,
+        "previous_hash": "a38ad6fb24b5845c516721a65b25fa3ecd07fe164928f27c4cdd42ac88b9d8b2",
+        "hash": "a4d7ae92bc8e7c9fbaf99e3486b8ba20e93d65b0f23e25fe2fff29c88c597b7a"
     }
 ]
