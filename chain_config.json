@@ -63,7 +63,7 @@
     "port": 5000,
     "bootstrap_state": {
         "last_bootstrap_status": "complete",
-        "last_bootstrap_timestamp": 1793781845.978616,
+        "last_bootstrap_timestamp": 1793861122.8904269,
         "seed_added": 0,
         "discovered_peer_added": 0,
         "peer_count": 4,
