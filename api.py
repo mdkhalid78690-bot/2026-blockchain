@@ -3309,7 +3309,7 @@ def _start_runtime_services(port, tls_context):
 
 @app.route("/api/exchange/book", methods=["GET"])
 def exchange_book():
-    data = read_json("exchange_data.json", {"last_price": 0.50, "orders": [], "trades": []})
+    data = read_json("exchange_data.json", {"last_price": None, "orders": [], "trades": []})
     return data
 
 
@@ -3322,7 +3322,7 @@ def create_exchange_order():
     price = float(body.get("price", 0))
     if side not in ("BUY", "SELL") or not address or amount <= 0 or price <= 0:
         return {"error": "Provide valid side (BUY/SELL), KWD wallet address, amount, and USD price"}, 400
-    data = read_json("exchange_data.json", {"last_price": 0.50, "orders": [], "trades": []})
+    data = read_json("exchange_data.json", {"last_price": None, "orders": [], "trades": []})
     order = {
         "id": int(time.time() * 1000),
         "side": side,
@@ -3343,7 +3343,7 @@ def fill_exchange_order(order_id):
     body = request.get_json(force=True, silent=True) or {}
     taker_address = str(body.get("taker_address", "")).strip()
     private_key = str(body.get("private_key", "")).strip()
-    data = read_json("exchange_data.json", {"last_price": 0.50, "orders": [], "trades": []})
+    data = read_json("exchange_data.json", {"last_price": None, "orders": [], "trades": []})
     target = next((o for o in data["orders"] if o["id"] == order_id and o["status"] == "OPEN"), None)
     if not target:
         return {"error": "Order not found or already filled"}, 404
@@ -3412,7 +3412,7 @@ def kwd_exchange_page():
       <div style="display:flex;gap:12px;align-items:center;">
         <div class="card" style="margin:0;padding:10px 16px;">
           <span style="color:#9ca3af;font-size:12px;">LAST KWD PRICE</span>
-          <div id="last-price" style="font-size:22px;font-weight:bold;color:#10b981;">$0.50</div>
+          <div id="last-price" style="font-size:22px;font-weight:bold;color:#10b981;">UNPRICED ($0.00)</div>
         </div>
         <a class="btn" href="/explorer">Back to KWD Explorer</a>
       </div>
@@ -3450,7 +3450,7 @@ def kwd_exchange_page():
     async function loadBook() {
       const r = await fetch('/api/exchange/book');
       const d = await r.json();
-      document.getElementById('last-price').innerText = '$' + Number(d.last_price || 0.50).toFixed(2);
+      document.getElementById('last-price').innerText = d.last_price ? ('$' + Number(d.last_price).toFixed(4)) : 'UNPRICED ($0.00)';
       const ob = document.getElementById('orders-body');
       const openOrders = (d.orders || []).filter(o => o.status === 'OPEN');
       ob.innerHTML = openOrders.length ? openOrders.map(o => `
