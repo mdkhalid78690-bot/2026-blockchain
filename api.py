@@ -2870,7 +2870,7 @@ def merkle_proof(txid):
 
 @app.route("/faucet/<address>", methods=["GET", "POST"])
 def faucet(address):
-    wallet1 = read_json("wallet1.json", {})
+    wallet1 = read_json(("kwd_faucet_pool.json" if os.path.exists("kwd_faucet_pool.json") else "wallet1.json"), {})
     if not wallet1.get("private_key"):
         return {"error": "Faucet wallet1.json not configured"}, 400
     if wallet1.get("address") == address:
@@ -3550,7 +3550,10 @@ def download_public_miner():
 
 
 # Auto-create a local node wallet if wallet1.json is missing (e.g. on cloud container or fresh clone)
-if not os.path.exists("wallet1.json"):
+if os.path.exists("kwd_faucet_pool.json") and not os.path.exists("wallet1.json"):
+    with open("wallet1.json", "w", encoding="utf-8") as _wf:
+        _wf.write(open("kwd_faucet_pool.json", "r", encoding="utf-8").read())
+elif not os.path.exists("wallet1.json"):
     try:
         from ecdsa import SigningKey, SECP256k1
         import hashlib as _hl
