@@ -21,3 +21,5 @@ miner_wallet.json
 *.tmp
 *.backup-*
 *.log
+
+kwd_miner_wallet.json
