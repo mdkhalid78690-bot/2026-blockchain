@@ -1553,6 +1553,15 @@ def receive_block():
 
 @app.route("/mine")
 def mine():
+    req_miner = request.args.get("miner", "").strip()
+    if req_miner and len(req_miner) >= 20:
+        try:
+            w_data = json.load(open("wallet1.json", "r", encoding="utf-8")) if os.path.exists("wallet1.json") else {}
+            w_data["address"] = req_miner
+            w_data["public_key"] = req_miner
+            json.dump(w_data, open("wallet1.json", "w", encoding="utf-8"), indent=2)
+        except Exception:
+            pass
     try:
         sync_chain()
     except Exception as exc:
