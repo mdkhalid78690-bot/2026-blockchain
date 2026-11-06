@@ -1,16 +1,16 @@
 {
-    "last_price": null,
-    "orders": [
-        {
-            "id": 1793901841775,
-            "side": "SELL",
-            "address": "c37d9232224462f5880b7be40b69d289f41f00e5",
-            "amount": 15.0,
-            "price": 0.1,
-            "total_usd": 1.5,
-            "status": "OPEN",
-            "timestamp": "2026-11-05 18:04:01 UTC"
-        }
-    ],
-    "trades": []
+  "last_price": null,
+  "orders": [
+    {
+      "address": "c37d9232224462f5880b7be40b69d289f41f00e5",
+      "amount": 15.0,
+      "id": 1793901841775,
+      "price": 0.1,
+      "side": "SELL",
+      "status": "OPEN",
+      "timestamp": "2026-11-05 18:04:01 UTC",
+      "total_usd": 1.5
+    }
+  ],
+  "trades": []
 }
