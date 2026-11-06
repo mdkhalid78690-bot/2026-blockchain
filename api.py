@@ -3539,6 +3539,21 @@ def download_public_miner():
     return send_file("miner.py", as_attachment=True, download_name="miner.py")
 
 
+
+# Auto-create a local node wallet if wallet1.json is missing (e.g. on cloud container or fresh clone)
+if not os.path.exists("wallet1.json"):
+    try:
+        from ecdsa import SigningKey, SECP256k1
+        import hashlib as _hl
+        _sk = SigningKey.generate(curve=SECP256k1)
+        _vk = _sk.get_verifying_key()
+        _pub = _vk.to_string().hex()
+        _addr = _hl.sha256(bytes.fromhex(_pub)).hexdigest()[:40]
+        with open("wallet1.json", "w", encoding="utf-8") as _wf:
+            json.dump({"address": _addr, "public_key": _pub, "private_key": _sk.to_string().hex()}, _wf, indent=2)
+    except Exception:
+        pass
+
 if __name__ == "__main__":
     config = read_json("node_config.json", {})
     port = int(os.environ.get("KWD_PORT", config.get("port", 5000)))
