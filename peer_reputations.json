@@ -5,22 +5,22 @@
     },
     "127.0.0.1:5001": {
         "last_reason": "healthy node",
-        "last_updated": 1793901105.0516026,
-        "score": -95
+        "last_updated": 1793946836.4267921,
+        "score": -100
     },
     "127.0.0.1:5002": {
         "last_reason": "healthy node",
-        "last_updated": 1793901107.1475909,
+        "last_updated": 1793946838.5598283,
         "score": -100
     },
     "127.0.0.1:5003": {
         "last_reason": "healthy node",
-        "last_updated": 1793901109.2622252,
+        "last_updated": 1793946840.6984668,
         "score": -100
     },
     "127.0.0.1:5004": {
         "last_reason": "healthy node",
-        "last_updated": 1793901111.3718467,
+        "last_updated": 1793946842.8379276,
         "score": -100
     },
     "seed.example:443": {

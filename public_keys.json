@@ -78,5 +78,9 @@
     {
         "address": "037d6180aa1f59598bb03864ec136403ce0ed223d1b7e8e985ec0d877da357a2",
         "public_key": "051a61021c39a4b6e89c63a535dc377c49bb9fc5d216fd68f6aad2ff5f8a4c6cdd3898db16a1dbf086e92809f7920a59b090e9fb77e77e368f6deeeeaabab375"
+    },
+    {
+        "address": "2c8483c48c32cf961e66b6e22afaf6d01cef226018f0efc21980efbbeb367e39",
+        "public_key": "666324bc8f52059245a8b6276d7705bf031c56a3f99b8f6433d3ea3858a4df9fa5b9a7d350f47cc11cfb8160f68ddf1371e36593a141d7ef1eb801cd4041baf9"
     }
 ]

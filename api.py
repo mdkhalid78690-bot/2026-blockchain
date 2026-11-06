@@ -1085,7 +1085,33 @@ def wallet_summary(address, chain):
 
 @app.route("/")
 def home():
-    return "KWD Blockchain API Running"
+    return """<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>KawaidCoin (KWD) ? Official PoW Blockchain Network</title>
+  <style>
+    body { background:#0b0f19; color:#e5e7eb; font-family:sans-serif; margin:0; padding:40px 20px; text-align:center; }
+    .box { max-width:760px; margin:0 auto; background:#111827; border:1px solid #1f2937; border-radius:14px; padding:32px; }
+    .badge { display:inline-block; padding:4px 12px; background:#064e3b; color:#a7f3d0; border-radius:99px; font-size:12px; margin-bottom:12px; }
+    .btns { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:24px; }
+    a.btn { padding:12px 20px; border-radius:8px; font-weight:bold; text-decoration:none; font-size:14px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="badge">KWD Blockchain API Running ? SHA-256 Proof-of-Work</div>
+    <h1 style="margin:8px 0;color:#fff;">KawaidCoin (KWD) Mainnet Portal</h1>
+    <p style="color:#9ca3af;line-height:1.6;">Open-source SHA-256 Proof-of-Work blockchain with a 21,000,000 KWD supply cap, ECDSA wallets, SPV Merkle proofs, and a peer-to-peer orderbook exchange.</p>
+    <div class="btns">
+      <a class="btn" style="background:#10b981;color:#000;" href="/explorer">Open Block Explorer &amp; Faucet</a>
+      <a class="btn" style="background:#f59e0b;color:#000;" href="/exchange">Open KWD Exchange</a>
+      <a class="btn" style="background:#3b82f6;color:#fff;" href="/send">Send KWD Portal</a>
+      <a class="btn" style="background:#8b5cf6;color:#fff;" href="/download/miner">Download CPU Miner</a>
+    </div>
+  </div>
+</body>
+</html>"""
 
 
 @app.route("/chain")
