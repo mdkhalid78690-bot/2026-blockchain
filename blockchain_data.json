@@ -6702,5 +6702,115 @@
         }
       }
     ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "681764dc8816e5a24a412227d3a20a260f5dc58c5e459abe803690972853bf9a",
+    "index": 295,
+    "merkle_root": "858727f337d7e7a9e6604f4f4559a0e3ae7049bbbf2592512b82422c974eb072",
+    "previous_hash": "8e2d26444f462b1935378af462621ace586c7676f860828a1e65158e7b6c4f41",
+    "proof": 202705,
+    "timestamp": 1794067732.9259644,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794067731.649329,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "9337cebf31941966f4718454c502c67b596b4ede3580355af8172e7aaab6609a",
+    "index": 296,
+    "merkle_root": "e98042bb02d1bbfd9df5976261ec7d3ef0c315f79cbdc16865dd16dd55b32f3c",
+    "previous_hash": "681764dc8816e5a24a412227d3a20a260f5dc58c5e459abe803690972853bf9a",
+    "proof": 2356082,
+    "timestamp": 1794067769.7257001,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794067754.9372737,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "3a0183b5a7a1ef559a94b7f7a408c1ddda500b9e8bc7a217d0333fdee40fa201",
+    "index": 297,
+    "merkle_root": "b699a51af24dde8ff67af71be4284dd1963664c604bb70732959d435ef19775c",
+    "previous_hash": "9337cebf31941966f4718454c502c67b596b4ede3580355af8172e7aaab6609a",
+    "proof": 742622,
+    "timestamp": 1794067795.0244803,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794067790.2277951,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "412eb684f855dba2b8e4e61655215322a1991b95f1b2c40a29ee36a599c1b361",
+    "index": 298,
+    "merkle_root": "8c5ef20ebfde9ade8108bdbc62c9fa2bde62b83588f1034f16fe35b1a13bdab8",
+    "previous_hash": "3a0183b5a7a1ef559a94b7f7a408c1ddda500b9e8bc7a217d0333fdee40fa201",
+    "proof": 19158,
+    "timestamp": 1794067816.6238198,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794067816.5272815,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "e9f8a9913bcc4217383fd86b7e75cba949e9d498a129f0df78a477e4899a9543",
+    "index": 299,
+    "merkle_root": "f209da1d8220773e692c8b3dd1231b9122612c2859765aa55b30e9defa1860da",
+    "previous_hash": "412eb684f855dba2b8e4e61655215322a1991b95f1b2c40a29ee36a599c1b361",
+    "proof": 1784449,
+    "timestamp": 1794067849.0273166,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794067838.2300909,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
   }
 ]
