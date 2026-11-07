@@ -471,10 +471,9 @@ def get_pending_fee_total(transactions):
 
 
 def calculate_reward(height, supply=0):
-    # Historical chain rewards
-    if height <= 100:
+    if height < 100:
         return 50.0
-    elif height <= 200:
+    elif height < 200:
         return 25.0
     elif height < 300:
         return 12.5
