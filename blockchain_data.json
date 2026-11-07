@@ -8374,5 +8374,71 @@
         }
       }
     ]
+  },
+  {
+    "difficulty": 4,
+    "hash": "14ecc15a9527734cb99c212fc1265a9062453d21f16e1b47b7e0dd2dee132d81",
+    "index": 371,
+    "merkle_root": "3bef23e3baf6ce1d04db1733fe3f9786631af0838d1433908c28a1dd5ec23d28",
+    "previous_hash": "94c7c99c936205f148f77a71a57796141383186ec3d3f4009a156bc1be4129f6",
+    "proof": 91517,
+    "timestamp": 1794073265.3955188,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794073264.89277,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 4,
+    "hash": "2142f68c0240c647ddaffa97a84f389632a4b876c7eeb49a068554de1fac2c88",
+    "index": 372,
+    "merkle_root": "0c94613df4f109e0d768833a8f3fdfb0a84e8c37226986446e676289186b75b4",
+    "previous_hash": "14ecc15a9527734cb99c212fc1265a9062453d21f16e1b47b7e0dd2dee132d81",
+    "proof": 62844,
+    "timestamp": 1794073291.2916517,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794073290.6061275,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 4,
+    "hash": "de630f0a92ba4057cc1e9e2506c859c3e7e32034562f62dd66da4ed2066da2e2",
+    "index": 373,
+    "merkle_root": "e6626f6bb91da938d175866fdb9715e7a1becbb3a4275ac8a224215b55ab129a",
+    "previous_hash": "2142f68c0240c647ddaffa97a84f389632a4b876c7eeb49a068554de1fac2c88",
+    "proof": 168892,
+    "timestamp": 1794073337.6872904,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794073336.687132,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
   }
 ]
