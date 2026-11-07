@@ -1335,14 +1335,15 @@ def get_block_fees(index):
 
 @app.route("/block/<int:index>/reward")
 def get_block_reward(height):
-    if height < 100:
+    if height <= 100:
         return 50.0
-    elif height < 200:
+    elif height <= 200:
         return 25.0
     else:
-        # Long-term production curve: 12.5 KWD for next 50,000 blocks
-        era = (height - 200) // 50000
+        # True 21M emission schedule: halves every 840,000 blocks
+        era = (height - 200) // 840000
         return max(12.5 / (2 ** era), 0.00000001)
+
 def get_block_by_hash(hash):
     for block in load_chain():
         if block.get("hash") == hash:
