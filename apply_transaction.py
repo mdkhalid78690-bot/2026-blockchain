@@ -3,7 +3,7 @@ import json
 with open("balances.json", "r") as f:
     balances = json.load(f)
 
-amount = 100
+amount = 1.00
 
 if balances["wallet1"] >= amount:
 

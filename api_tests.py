@@ -2411,7 +2411,7 @@ def test_network_health_dashboard_aggregates_data():
         core.write_json("chain_config.json", config)
         Path("peers.json").write_text(json.dumps(["127.0.0.1:5000"], indent=4))
         Path("mempool.json").write_text(json.dumps([
-            {"transaction": {"amount": 100, "fees": 1, "from": "addr1", "to": "addr2", "timestamp": time.time()}, "signature": "sig1"}
+            {"transaction": {"amount": 1.00, "fees": 1, "from": "addr1", "to": "addr2", "timestamp": time.time()}, "signature": "sig1"}
         ], indent=4))
         client = api.app.test_client()
         response = client.get("/network_health_dashboard")

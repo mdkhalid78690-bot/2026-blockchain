@@ -2,6 +2,16 @@
   "last_price": null,
   "orders": [
     {
+      "address": "c64a37ca6c1b499eea382d75148f100be24ae020",
+      "amount": 25.0,
+      "id": 1794058446443,
+      "price": 1.0,
+      "side": "SELL",
+      "status": "OPEN",
+      "timestamp": "2026-11-07 13:34:06 UTC",
+      "total_usd": 25.0
+    },
+    {
       "address": "c37d9232224462f5880b7be40b69d289f41f00e5",
       "amount": 15.0,
       "id": 1793901841775,

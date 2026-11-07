@@ -2897,7 +2897,7 @@ def faucet(address):
     return {
         "message": "Faucet sent 10 KWD to your wallet!",
         "recipient": address,
-        "amount": 10.0,
+        "amount": 1.0,
         "txid": tx_id(signed_tx),
     }
 
