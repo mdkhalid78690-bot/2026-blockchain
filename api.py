@@ -2793,7 +2793,28 @@ def reward_schedule():
     }
 
 
-@app.route("/halving_info")
+@app.route('/halving_info')
+def halving_info():
+    chain = load_chain()
+    height = len(chain)
+    supply = get_total_supply(chain)
+    max_supply = 21000000.0
+    current_reward = calculate_reward(height, supply)
+    next_halving_height = 840000
+    blocks_until = max(0, next_halving_height - height)
+    next_reward = round(current_reward / 2.0, 8) if current_reward > 0 else 0
+    
+    return jsonify({
+        "current_height": height,
+        "next_halving_height": next_halving_height,
+        "blocks_until_halving": blocks_until,
+        "current_reward": float(current_reward),
+        "next_reward": float(next_reward),
+        "total_supply_mined": float(supply),
+        "max_supply": float(max_supply),
+        "percent_mined": round((float(supply) / float(max_supply)) * 100, 4)
+    })
+
 def halving_info():
     chain = load_chain()
     config = load_chain_config()
