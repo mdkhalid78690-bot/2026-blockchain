@@ -482,7 +482,7 @@ def calculate_reward(height, supply=0):
     elif height <= 840000:
         return 12.5
     else:
-        era = (height - 840000) // 840000 + 1
+        era = (height - 840001) // 840000 + 1
         return max(12.5 / (2 ** era), 0.00000001)
 
 def calculate_next_difficulty(chain):
