@@ -7318,5 +7318,71 @@
         }
       }
     ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "5119aa23c4631978aecf17e46305abdba23d2d3f4181c01e190326b0983434e3",
+    "index": 323,
+    "merkle_root": "54ff0127a1fe8712b7ae43e529c9fa6c280af29b5ad390bb757f0737a8bdfd8b",
+    "previous_hash": "d5382e4be53817bb49cb2252c30dccb31bd179b1d4bbb5e49e3c23cf19940e59",
+    "proof": 879136,
+    "timestamp": 1794069039.1088917,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 6.25,
+          "base_reward": 6.25,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794069027.2066932,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "6062cd369342e24420e1c2c77a86bbdef56fab1bdf8dc5d776698a9b7c130dcc",
+    "index": 324,
+    "merkle_root": "5aff11f419cb8474a3415f2fa18d14bdb667bb56459e02399b93acf06f35b248",
+    "previous_hash": "5119aa23c4631978aecf17e46305abdba23d2d3f4181c01e190326b0983434e3",
+    "proof": 595504,
+    "timestamp": 1794069067.8094063,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 6.25,
+          "base_reward": 6.25,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794069063.924361,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "938c72515b40436480a3a20577a58da7b0426af8c5a5f2a92c1cfd3c92526f47",
+    "index": 325,
+    "merkle_root": "2f39655d6e3b915331fada12ba05cb3443a5cbac7ee1dbcccfc322f17823ef25",
+    "previous_hash": "6062cd369342e24420e1c2c77a86bbdef56fab1bdf8dc5d776698a9b7c130dcc",
+    "proof": 356328,
+    "timestamp": 1794069095.112678,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 6.25,
+          "base_reward": 6.25,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794069092.8923006,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
   }
 ]
