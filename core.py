@@ -471,15 +471,16 @@ def get_pending_fee_total(transactions):
 
 
 def calculate_reward(height, supply=0):
+    # Historical chain rewards
     if height <= 100:
         return 50.0
     elif height <= 200:
         return 25.0
-    elif 300 <= height < 325:
-        # Grace window for blocks already mined at 6.25
+    elif height < 300:
+        return 12.5
+    elif 300 <= height < 326:
         return 6.25
     elif height <= 840000:
-        # Locked 12.5 KWD production era
         return 12.5
     else:
         era = (height - 840000) // 840000 + 1
