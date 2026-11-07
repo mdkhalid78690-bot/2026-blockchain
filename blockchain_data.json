@@ -7384,5 +7384,71 @@
         }
       }
     ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "3ff393460140154be0b5b53be63bf921bc3ed54c9347fd6b8f6f117bed2aba7e",
+    "index": 326,
+    "merkle_root": "10d715f334272b2a00a434b003e90ec5367354e8ae59fab5d0d9c27503678024",
+    "previous_hash": "938c72515b40436480a3a20577a58da7b0426af8c5a5f2a92c1cfd3c92526f47",
+    "proof": 835762,
+    "timestamp": 1794070758.7727253,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 6.25,
+          "base_reward": 6.25,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794070753.8745246,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "d73fd1d38dd5f207eb19fc5a214fc88dceafa67e80906917dc352cbe66de0c8c",
+    "index": 327,
+    "merkle_root": "5ba2a0c34b8081f6d912520bcd1d5c082ef4177e16115dd72297768611b82647",
+    "previous_hash": "3ff393460140154be0b5b53be63bf921bc3ed54c9347fd6b8f6f117bed2aba7e",
+    "proof": 2318235,
+    "timestamp": 1794070792.6624937,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794070778.9748404,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 5,
+    "hash": "c91cd24f84949ca61858f2df55e51fe42dd0c249c6824bef33d6ba95afa0c316",
+    "index": 328,
+    "merkle_root": "423947432223763e677a605d66882a726cc5c56222f3a73cb3bb7f82b886dedb",
+    "previous_hash": "d73fd1d38dd5f207eb19fc5a214fc88dceafa67e80906917dc352cbe66de0c8c",
+    "proof": 962126,
+    "timestamp": 1794070840.8615124,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794070835.0657592,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
   }
 ]
