@@ -1334,28 +1334,15 @@ def get_block_fees(index):
 
 
 @app.route("/block/<int:index>/reward")
-def get_block_reward(index):
-    for block in load_chain():
-        if block.get("index") == index:
-            for tx_data in block.get("transactions", []):
-                if tx_signature(tx_data) == MINING_REWARD_SIGNATURE:
-                    tx = tx_payload(tx_data)
-                    base_reward = tx.get("base_reward", tx.get("amount", 0))
-                    fees = tx.get("fees", 0)
-                    total_reward = tx.get("amount", base_reward + fees)
-                    return {
-                        "index": index,
-                        "base_reward": base_reward,
-                        "fees": fees,
-                        "total_reward": total_reward,
-                        "to": tx.get("to"),
-                        "txid": tx.get("txid"),
-                    }
-            return {"index": index, "base_reward": 0.0, "fees": 0.0, "total_reward": 0.0}
-    return {"error": "Block not found"}, 404
-
-
-@app.route("/block/hash/<hash>")
+def get_block_reward(height):
+    if height < 100:
+        return 50.0
+    elif height < 200:
+        return 25.0
+    else:
+        # Long-term production curve: 12.5 KWD for next 50,000 blocks
+        era = (height - 200) // 50000
+        return max(12.5 / (2 ** era), 0.00000001)
 def get_block_by_hash(hash):
     for block in load_chain():
         if block.get("hash") == hash:
