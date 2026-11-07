@@ -2801,11 +2801,11 @@ def halving_info():
     supply = get_total_supply(chain)
     max_supply = float(config.get("max_supply", 21000000))
     current_reward = calculate_reward(height, supply)
-    next_halving_height = None
+    next_halving_height = 840000
     next_reward = current_reward
     for item in config.get("reward_schedule", []):
         if height < int(item["height"]):
-            next_halving_height = int(item["height"])
+            next_halving_height = 840000
             next_reward = float(item["reward"])
             break
     return {
@@ -2816,7 +2816,7 @@ def halving_info():
         "next_reward": next_reward,
         "total_supply_mined": supply,
         "max_supply": max_supply,
-        "percent_mined": round((supply / max_supply) * 100, 6) if max_supply else 0,
+        "percent_mined": round((supply / max_supply) * 840000, 6) if max_supply else 0,
     }
 
 
