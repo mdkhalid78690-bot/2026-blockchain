@@ -8308,5 +8308,27 @@
         }
       }
     ]
+  },
+  {
+    "difficulty": 4,
+    "hash": "c5c094b077863a1774ea4c7a09caecb691132c9b95781ae3f8150f53bad61bd9",
+    "index": 368,
+    "merkle_root": "61df1a326e392326a4e848355fa58ddc75c07dc5139bb227d151ba70e60f259d",
+    "previous_hash": "d5c2d899e68e00981cbccadaeabb9e4f8785d04a9ed556a33f401c747d4898fe",
+    "proof": 126547,
+    "timestamp": 1794072925.7470086,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794072924.9507682,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
   }
 ]
