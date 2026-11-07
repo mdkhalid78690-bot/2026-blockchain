@@ -64,7 +64,7 @@ DEFAULT_CHAIN_CONFIG = {
     "reward_schedule": [
         {"height": 100, "reward": 25},
         {"height": 200, "reward": 12.5},
-        {"height": 300, "reward": 6.25},
+        {"height": 840000, "reward": 6.25},
         {"height": 400, "reward": 3.125},
         {"height": 500, "reward": 1.5625},
         {"height": 600, "reward": 0.78125}
