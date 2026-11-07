@@ -470,21 +470,20 @@ def get_pending_fee_total(transactions):
     return float(total)
 
 
-def calculate_reward(height, supply):
-    config = load_chain_config()
-    reward = Decimal(str(config.get("initial_reward", 50)))
-    for item in config.get("reward_schedule", []):
-        if height >= int(item["height"]):
-            reward = Decimal(str(item["reward"]))
-    min_reward = Decimal(str(config.get("min_reward", MIN_REWARD)))
-    if reward < min_reward:
-        reward = min_reward
-    max_supply = Decimal(str(config.get("max_supply", MAX_SUPPLY)))
-    remaining = max_supply - Decimal(str(supply))
-    if remaining <= 0:
-        return 0
-    return float(min(reward, remaining))
-
+def calculate_reward(height, supply=0):
+    if height <= 100:
+        return 50.0
+    elif height <= 200:
+        return 25.0
+    elif 300 <= height < 325:
+        # Grace window for blocks already mined at 6.25
+        return 6.25
+    elif height <= 840000:
+        # Locked 12.5 KWD production era
+        return 12.5
+    else:
+        era = (height - 840000) // 840000 + 1
+        return max(12.5 / (2 ** era), 0.00000001)
 
 def calculate_next_difficulty(chain):
     config = load_chain_config()
