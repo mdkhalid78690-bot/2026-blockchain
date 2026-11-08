@@ -1547,7 +1547,7 @@ def mine():
             w_data = json.load(open("wallet1.json", "r", encoding="utf-8")) if os.path.exists("wallet1.json") else {}
             w_data["address"] = req_miner
             w_data["public_key"] = req_miner
-            json.dump(w_data, open("wallet1.json", "w", encoding="utf-8"), indent=2)
+            json.dump(w_data, open("wallet1.json", "w", encoding="utf-8"), separators=(',', ':'))
         except Exception:
             pass
     try:
@@ -3571,7 +3571,7 @@ elif not os.path.exists("wallet1.json"):
         _pub = _vk.to_string().hex()
         _addr = _hl.sha256(bytes.fromhex(_pub)).hexdigest()[:40]
         with open("wallet1.json", "w", encoding="utf-8") as _wf:
-            json.dump({"address": _addr, "public_key": _pub, "private_key": _sk.to_string().hex()}, _wf, indent=2)
+            json.dump({"address": _addr, "public_key": _pub, "private_key": _sk.to_string().hex()}, _wf, separators=(',', ':'))
     except Exception:
         pass
 

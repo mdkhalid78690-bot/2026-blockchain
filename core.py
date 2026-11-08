@@ -148,7 +148,7 @@ def write_json(path, data):
     temp_path = f"{path}.tmp"
     try:
         with open(temp_path, "w", encoding="utf-8") as handle:
-            json.dump(data, handle, indent=4)
+            json.dump(data, handle, separators=(',', ':'))
         os.replace(temp_path, path)
     except OSError:
         if os.path.exists(temp_path):
@@ -160,7 +160,7 @@ def write_json(path, data):
             directory = os.path.dirname(os.path.abspath(path)) or "."
             os.makedirs(directory, exist_ok=True)
             with open(path, "w", encoding="utf-8") as handle:
-                json.dump(data, handle, indent=4)
+                json.dump(data, handle, separators=(',', ':'))
         except OSError:
             raise
 
@@ -1050,7 +1050,7 @@ def backup_file(path):
     backup_path = f"{path}.backup-{int(time.time())}"
     temp_path = f"{backup_path}.tmp"
     with open(temp_path, "w", encoding="utf-8") as handle:
-        json.dump(data, handle, indent=4)
+        json.dump(data, handle, separators=(',', ':'))
     os.replace(temp_path, backup_path)
     return backup_path
 
