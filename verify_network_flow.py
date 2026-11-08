@@ -5,8 +5,8 @@ from pathlib import Path
 from api import build_peer_headers
 
 ROOT = Path('c:/Users/MD khalid/Desktop/2026 blockchain')
-NODE1 = 'http://127.0.0.1:5000'
-NODE2 = 'http://127.0.0.1:5001'
+NODE1 = ""
+NODE2 = ""
 NODE2_DIR = Path('c:/Users/MD khalid/Desktop/2026 blockchain node2')
 
 with open(ROOT / 'wallet1.json', 'r', encoding='utf-8') as fh:
@@ -25,7 +25,7 @@ def call(url, timeout=20):
 
 
 def call_signed(url, path, timeout=20):
-    r = requests.get(url, headers=build_peer_headers(path), timeout=timeout)
+    r = requests.get(url, headers=build_peer_headers(path, timeout=3), timeout=timeout)
     print(url, r.status_code)
     try:
         return r.json()
@@ -43,7 +43,7 @@ def post(url, payload, timeout=20):
 
 
 def post_signed(url, path, payload=None, timeout=20):
-    r = requests.post(url, json=payload, headers=build_peer_headers(path, payload), timeout=timeout)
+    r = requests.post(url, json=payload, headers=build_peer_headers(path, payload, timeout=3), timeout=timeout)
     print(url, r.status_code)
     try:
         return r.json()

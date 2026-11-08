@@ -248,14 +248,14 @@ def signed_get(url, **kwargs):
     headers = build_peer_headers(kwargs.pop("path", ""))
     kwargs.setdefault("headers", {})
     kwargs["headers"].update(headers)
-    return requests.get(url, **kwargs)
+    return requests.get(url, **kwargs, timeout=3)
 
 
 def signed_post(url, **kwargs):
     headers = build_peer_headers(kwargs.pop("path", ""), payload=kwargs.get("json"))
     kwargs.setdefault("headers", {})
     kwargs["headers"].update(headers)
-    return requests.post(url, **kwargs)
+    return requests.post(url, **kwargs, timeout=3)
 
 
 def is_admin_authorized():

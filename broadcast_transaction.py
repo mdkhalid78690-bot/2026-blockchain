@@ -16,7 +16,7 @@ for peer in peers:
         requests.post(
             peer + "/receive_transaction",
             json=latest_tx
-        )
+        , timeout=3)
 
         print(
             "Broadcasted transaction to",

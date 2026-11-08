@@ -1,4 +1,4 @@
-﻿import os, json, time, hashlib, requests
+import os, json, time, hashlib, requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -42,7 +42,7 @@ def main():
     print("[1/3] Connecting to global KWD Seed Node...")
     for attempt in range(1, 5):
         try:
-            ping = session.get(f"{CLOUD_URL}/node_info", timeout=60).json()
+            ping = session.get(f"{CLOUD_URL}/node_info", timeout=15).json()
             print(f" -> Connected! Network Height: Block #{ping.get('height')} | Chain Work: {ping.get('chain_work')}")
             break
         except Exception:
@@ -61,10 +61,22 @@ def main():
     print(f" -> CPU PoW Complete! Nonce={nonce} | Hash={h[:24]}... | Hashrate={int(nonce / elapsed):,} H/s")
 
     print(f"\n[3/3] Mining next KWD block for Miner Wallet ({addr[:14]}...)...")
-    r = session.get(f"{CLOUD_URL}/mine?miner={addr}", timeout=90)
+    r = session.get(f"{CLOUD_URL}/mine?miner={addr}", timeout=15)
     print(f" -> Network Status: HTTP {r.status_code} | {r.text[:120].strip()}")
-    info = session.get(f"{CLOUD_URL}/halving_info", timeout=30).json()
+    info = session.get(f"{CLOUD_URL}/halving_info", timeout=15).json()
     print(f" -> Updated Height: Block #{info.get('current_height')} | Supply: {info.get('total_supply_mined')} / {info.get('max_supply')} KWD")
 
 if __name__ == "__main__":
-    main()
+    session_blocks = 0
+    while True:
+        try:
+            main()
+            session_blocks += 1
+            print(f"\n[24/7 Miner] Session Blocks Mined: {session_blocks} | Starting next block in 2s...\n")
+            time.sleep(2)
+        except KeyboardInterrupt:
+            print("\n[24/7 Miner] Stopped by user (Ctrl+C).")
+            break
+        except (Exception, SystemExit) as e:
+            print(f"\n[24/7 Miner] Node busy or retrying in 5s ({e})...")
+            time.sleep(5)

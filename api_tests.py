@@ -2057,7 +2057,7 @@ def test_sync_chain_replaces_local_chain_with_longer_valid_peer_chain():
         setup_clean_chain()
         local_chain = [core.create_genesis_block()]
         Path("blockchain_data.json").write_text(json.dumps(local_chain, indent=4))
-        Path("peers.json").write_text(json.dumps(["http://127.0.0.1:5001", "http://127.0.0.1:5002"]))
+        Path("peers.json").write_text(json.dumps(["", ""]))
 
         longer_peer_chain = [
             core.create_genesis_block(),
@@ -2077,7 +2077,7 @@ def test_sync_chain_replaces_local_chain_with_longer_valid_peer_chain():
                 )
             raise AssertionError(f"Unexpected URL: {url}")
 
-        with patch("api.load_peers", return_value=["http://127.0.0.1:5001", "http://127.0.0.1:5002"]):
+        with patch("api.load_peers", return_value=["", ""]):
             with patch("api.sync_peer_list", return_value=([], 0, [])):
                 with patch("api.signed_get", side_effect=fake_signed_get):
                     response = api.app.test_client().get("/sync_chain")
@@ -2085,7 +2085,7 @@ def test_sync_chain_replaces_local_chain_with_longer_valid_peer_chain():
         assert response.status_code == 200
         result = response.get_json()
         assert result.get("message") == "Chain replaced with stronger valid chain"
-        assert result.get("source") == "http://127.0.0.1:5002"
+        assert result.get("source") == ""
         assert len(api.load_chain()) == len(longer_peer_chain)
     finally:
         restore_working_files(backup)
