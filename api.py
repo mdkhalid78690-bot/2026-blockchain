@@ -3554,7 +3554,7 @@ def kwd_exchange_page():
 @app.route("/download/miner", methods=["GET"])
 def download_public_miner():
     from flask import send_file
-    return send_file("miner.py", as_attachment=True, download_name="miner.py")
+    return send_file("kwd_remote_miner.py", as_attachment=True, download_name="kwd_remote_miner.py")
 
 
 
