@@ -28,7 +28,11 @@ def sha256d(data_str):
 def main():
     session = get_session()
     w = get_or_create_wallet()
-    addr = w["address"]
+    import sys
+    if len(sys.argv) > 1 and len(sys.argv[1].strip()) >= 30:
+        addr = sys.argv[1].strip()
+    else:
+        addr = w["address"]
     print("============================================================")
     print(" KawaidCoin (KWD) Public Standalone CPU Miner v1.0")
     print(f" Connected Node : {CLOUD_URL}")

@@ -44,7 +44,7 @@ while True:
                 
                 # Run Git commands
                 subprocess.run(["git", "add", "blockchain_data.json", "exchange_data.json"], check=True)
-                commit_msg = f"[skip render] Auto-sync: Chain advanced to Block {remote_height}"
+                commit_msg = f"[skip ci] Auto-sync: Chain advanced to Block {remote_height}"
                 subprocess.run(["git", "commit", "-m", commit_msg], check=True)
                 subprocess.run(["git", "push", "origin", "main"], check=True)
                 print(f"[{time.strftime('%H:%M:%S')}] Successfully pushed Block {remote_height} to GitHub!\n")
