@@ -73,7 +73,7 @@ if __name__ == "__main__":
             main()
             session_blocks += 1
             print(f"\n[24/7 Miner] Session Blocks Mined: {session_blocks} | Starting next block in 2s...\n")
-            time.sleep(2)
+            time.sleep(8)
         except KeyboardInterrupt:
             print("\n[24/7 Miner] Stopped by user (Ctrl+C).")
             break
