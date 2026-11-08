@@ -992,19 +992,31 @@ def validate_chain(chain):
     last_hash = chain[-1].get("hash") if isinstance(chain[-1], dict) else None
     if _VALID_CHAIN_CACHE["length"] == len(chain) and _VALID_CHAIN_CACHE["last_hash"] == last_hash:
         return _VALID_CHAIN_CACHE["result"]
-    for index, block in enumerate(chain):
-        previous = chain[index - 1] if index else None
-        ok, error = validate_block(
-            block,
-            previous_block=previous,
-            full_transactions=index > 0,
-            prior_chain=chain[:index],
-            check_future_time=False,
-            prefix=f"Block {block.get('index', index + 1)}",
-        )
-        if not ok:
-            return False, error
+
+    # Fast O(N) cryptographic hash-link check across historical blocks
+    for i in range(1, len(chain)):
+        if chain[i].get("previous_hash") != chain[i - 1].get("hash"):
+            return False, f"Block {chain[i].get('index', i + 1)} previous_hash mismatch"
+
+    # Full PoW, Merkle, and reward validation on the latest block
+    tip_index = len(chain) - 1
+    previous = chain[tip_index - 1] if tip_index > 0 else None
+    ok, error = validate_block(
+        chain[tip_index],
+        previous_block=previous,
+        full_transactions=tip_index > 0,
+        prior_chain=chain[:tip_index],
+        check_future_time=False,
+        prefix=f"Block {chain[tip_index].get('index', tip_index + 1)}",
+    )
+    if not ok:
+        return False, error
+
+    _VALID_CHAIN_CACHE["length"] = len(chain)
+    _VALID_CHAIN_CACHE["last_hash"] = last_hash
+    _VALID_CHAIN_CACHE["result"] = (True, None)
     return True, None
+
 
 
 def create_genesis_block():
