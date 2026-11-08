@@ -24324,5 +24324,71 @@
         }
       }
     ]
+  },
+  {
+    "difficulty": 4,
+    "hash": "aa31b0343524b32f2e2c18559fa81be969c4f86d0d98a9a65e73383b8cbe206e",
+    "index": 1096,
+    "merkle_root": "b099407c89a64f279c80946e9e074ba53e3d6c5704ec01dc3891976b2b2de78b",
+    "previous_hash": "125af54318b5ce7994ed781b3210044e4868ece7c4a35d7300af965661a777dd",
+    "proof": 31905,
+    "timestamp": 1794119691.0603683,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794119690.5566757,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 4,
+    "hash": "b40ec28984208117d55eed0ece5e012de6a0a087d89f2796bb3ee3c62b55c5af",
+    "index": 1097,
+    "merkle_root": "e347b6d5fca9fde386e6259156b2b4e2eb47984ecb3ee746338518f81f44433a",
+    "previous_hash": "aa31b0343524b32f2e2c18559fa81be969c4f86d0d98a9a65e73383b8cbe206e",
+    "proof": 317494,
+    "timestamp": 1794119766.7574525,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794119764.4722886,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 4,
+    "hash": "41ec70f5fd70dcded951459016b8fe08fbf0f5a1741636ba013f2b4d89384b9c",
+    "index": 1098,
+    "merkle_root": "47359212592295bdb1a6ee2cc9e73aa0f4c0f1d8b216f3e6cd7fe6eb787ddaf9",
+    "previous_hash": "b40ec28984208117d55eed0ece5e012de6a0a087d89f2796bb3ee3c62b55c5af",
+    "proof": 61644,
+    "timestamp": 1794119841.168383,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794119840.8691921,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
   }
 ]
