@@ -15,7 +15,7 @@ print("==================================================")
 while True:
     try:
         # 1. Fetch remote chain height
-        res = requests.get(f"{CLOUD}/chain", timeout=60)
+        res = requests.get(f"{CLOUD}/chain", timeout=240)
         if res.status_code == 200:
             remote_chain = res.json().get("chain", [])
             remote_height = len(remote_chain)
