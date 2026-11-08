@@ -26458,5 +26458,71 @@
         }
       }
     ]
+  },
+  {
+    "difficulty": 6,
+    "hash": "9103589d62c2174978f24cc41bd0d7a8f17c8d82ebcab2977e51187e052ffeed",
+    "index": 1193,
+    "merkle_root": "dcf064d0da125baff8f27776f14446dcd97d830d6ccc3d6600797ff299cdb7ea",
+    "previous_hash": "6c634e0c19990ddbbb938f444ee6c39e0b5b28e77233b8bcb9588322ea732a51",
+    "proof": 2502681,
+    "timestamp": 1794129587.937699,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794129523.7351024,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 6,
+    "hash": "8b2ecab232920f053632d50f2341635b69b53fa4b6678ce1472371cb98e1d396",
+    "index": 1194,
+    "merkle_root": "eb348a387b615b517950d12e9cf2c0f5c6f7897224da6282b81670b1c557ae2c",
+    "previous_hash": "9103589d62c2174978f24cc41bd0d7a8f17c8d82ebcab2977e51187e052ffeed",
+    "proof": 11017872,
+    "timestamp": 1794129836.8415759,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794129635.644946,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
+  },
+  {
+    "difficulty": 6,
+    "hash": "201e170350a10a6de4080704aa2142422aa2089010e8c2701da36f2517e1fc34",
+    "index": 1195,
+    "merkle_root": "04afe3fa0fce6870f1779219d5022e9767db5ee310773342da75abeb5d0eee99",
+    "previous_hash": "8b2ecab232920f053632d50f2341635b69b53fa4b6678ce1472371cb98e1d396",
+    "proof": 704200,
+    "timestamp": 1794129854.141567,
+    "transactions": [
+      {
+        "signature": "MINING_REWARD",
+        "transaction": {
+          "amount": 12.5,
+          "base_reward": 12.5,
+          "fees": 0.0,
+          "from": "NETWORK",
+          "timestamp": 1794129845.041962,
+          "to": "c8f7e9be57116b59b0612f388e3cf9f9e5a9db59"
+        }
+      }
+    ]
   }
 ]
