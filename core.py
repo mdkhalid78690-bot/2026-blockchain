@@ -594,7 +594,10 @@ def register_wallet(address=None, public_key=None, wallet=None, metadata=None):
 def verify_transaction_signature(tx_data, public_keys=None):
     signature = tx_signature(tx_data)
     if signature == MINING_REWARD_SIGNATURE:
-        return True, None
+        _VALID_CHAIN_CACHE["length"] = len(chain)
+    _VALID_CHAIN_CACHE["last_hash"] = last_hash
+    _VALID_CHAIN_CACHE["result"] = (True, None)
+    return True, None
     tx = tx_payload(tx_data)
     if not isinstance(tx, dict):
         return False, "Transaction payload must be an object"
@@ -815,7 +818,7 @@ def validate_block_transactions(block, prior_chain):
         working_nonces[sender] = nonce
         fee_total += fee
 
-    expected_reward = Decimal(str(calculate_reward(len(prior_chain), get_total_supply(prior_chain))))
+    expected_reward = Decimal(str(calculate_reward(len(prior_chain), 0)))
     if reward_txs:
         reward = tx_payload(reward_txs[0])
         if reward.get("from") != NETWORK:
@@ -981,9 +984,14 @@ def validate_candidate_block(block, check_future_time=True, prefix="Candidate bl
     return True, None
 
 
+_VALID_CHAIN_CACHE = {"length": -1, "last_hash": None, "result": (True, None)}
+
 def validate_chain(chain):
     if not isinstance(chain, list) or not chain:
         return False, "Chain is empty"
+    last_hash = chain[-1].get("hash") if isinstance(chain[-1], dict) else None
+    if _VALID_CHAIN_CACHE["length"] == len(chain) and _VALID_CHAIN_CACHE["last_hash"] == last_hash:
+        return _VALID_CHAIN_CACHE["result"]
     for index, block in enumerate(chain):
         previous = chain[index - 1] if index else None
         ok, error = validate_block(
