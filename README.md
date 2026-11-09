@@ -1,19 +1,17 @@
-﻿# KawaidCoin (KWD) - Proof-of-Work Blockchain & P2P Network
+# KawaidCoin (KWD) Core - Decentralized Peer-to-Peer Blockchain
 
-KawaidCoin (**KWD**) is an open-source, Bitcoin-architected SHA-256 Proof-of-Work blockchain built in Python with ECDSA cryptographic signatures, Merkle Tree SPV proofs, automatic difficulty retargeting, a 21,000,000 KWD hard supply cap, and a live Peer-to-Peer Orderbook Exchange.
+KawaidCoin (KWD) is an open-source Proof-of-Work cryptocurrency built on SHA-256 consensus.
 
-## Live Public Network Links
-- **Live Block Explorer, Faucet & SPV Verifier:** https://climbing-mere-various-keyword.trycloudflare.com/explorer
-- **Live Peer-to-Peer KWD Exchange:** https://climbing-mere-various-keyword.trycloudflare.com/exchange
-- **Live Send KWD Portal:** https://climbing-mere-various-keyword.trycloudflare.com/send
-- **Live Halving & Supply API:** https://climbing-mere-various-keyword.trycloudflare.com/halving_info
+## Specifications
+- Symbol: KWD
+- Max Supply: 210,000,000.00 KWD
+- Block Time: 60 seconds
+- Genesis Reward: 50.0 KWD
+- Halving: Every 2,100,000 blocks (~4 years)
+- Retarget: 1,440 blocks (24 hours)
+- Difficulty: 6 (Standard CPU baseline)
 
-## Core Protocol Specifications
-- **Consensus:** SHA-256 Proof-of-Work (PoW) with cumulative chain-work selection
-- **Maximum Supply:** 21,000,000.0 KWD
-- **Block Reward & Halving:** 50.0 KWD initial reward, halving every 100 blocks
-- **Cryptography:** SECP256k1 ECDSA public/private key signatures & SHA-256 Merkle Trees
-
-## How to Mine KWD on Your Computer (2-Step Quickstart)
-1. Download miner.py from https://climbing-mere-various-keyword.trycloudflare.com/explorer (click **Download CPU Miner**).
-2. Open a terminal in that folder and run: pip install requests && python miner.py
+## Quick Start
+1. Install dependencies: pip install -r requirements.txt
+2. Run node: python api.py
+3. Run miner: python kwd_remote_miner.py <YOUR_WALLET_ADDRESS>

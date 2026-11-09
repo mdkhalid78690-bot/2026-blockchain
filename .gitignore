@@ -1,25 +1,34 @@
-﻿venv/
-.venv/
+# Python artifacts
 __pycache__/
-.pytest_cache/
-legacy_archive/
+*.pyc
+*.pyo
+*.pyd
+
+# Private keys and local wallets
+*wallet*.json
+*keys*.json
+*.pem
+*.key
+hal_finney_wallet.json
+
+# Local backups and databases
+*.backup*
+*.sqlite3
 backup/
-node_500*/
-2026 blockchain node*/
-KWD_Blockchain_Alpha*/
+legacy_archive/
+
+# Build and installer artifacts
 build/
 dist/
-Wallet/
-wallet*.json
-wallets.json
-miner_wallet.json
 *.spec
 *.zip
-*.sqlite3
-*.key
-*.pyc
-*.tmp
-*.backup-*
-*.log
 
-kwd_miner_wallet.json
+# Local multi-node test directories
+node_*/
+*node2*/
+
+# Local logs and editor files
+*.log
+*.tmp
+.vscode/
+.idea/

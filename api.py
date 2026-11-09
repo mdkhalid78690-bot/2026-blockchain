@@ -1,4 +1,32 @@
-﻿import hashlib
+
+# --- SATOSHI 10-MINUTE CONSENSUS ENGINE ---
+MAX_TARGET = 0x0000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+TARGET_BLOCK_TIME = 600  # 10 minutes per block (seconds)
+RETARGET_INTERVAL = 10   # Adjust difficulty every 10 blocks
+
+def calculate_next_target(chain_data):
+    if len(chain_data) < RETARGET_INTERVAL:
+        return chain_data[-1].get("target", MAX_TARGET)
+    
+    last_block = chain_data[-1]
+    
+    # Only recalculate on boundary blocks
+    if len(chain_data) % RETARGET_INTERVAL != 0:
+        return last_block.get("target", MAX_TARGET)
+        
+    first_block = chain_data[-RETARGET_INTERVAL]
+    actual_time = last_block.get("timestamp", 0) - first_block.get("timestamp", 0)
+    expected_time = RETARGET_INTERVAL * TARGET_BLOCK_TIME
+    
+    # Dampen fluctuations (max 4x change in either direction)
+    actual_time = max(actual_time, expected_time // 4)
+    actual_time = min(actual_time, expected_time * 4)
+    
+    current_target = last_block.get("target", MAX_TARGET)
+    new_target = (current_target * actual_time) // expected_time
+    return min(new_target, MAX_TARGET)
+
+import hashlib
 import hmac
 import json
 import os
@@ -2793,52 +2821,31 @@ def reward_schedule():
     }
 
 
-@app.route('/halving_info')
+@app.route('/halving_info', methods=['GET'])
 def halving_info():
-    chain = load_chain()
-    height = len(chain)
-    supply = get_total_supply(chain)
-    max_supply = 21000000.0
-    current_reward = calculate_reward(height, supply)
-    next_halving_height = 840000
-    blocks_until = max(0, next_halving_height - height)
-    next_reward = round(current_reward / 2.0, 8) if current_reward > 0 else 0
-    
-    return jsonify({
-        "current_height": height,
-        "next_halving_height": next_halving_height,
-        "blocks_until_halving": blocks_until,
-        "current_reward": float(current_reward),
-        "next_reward": float(next_reward),
-        "total_supply_mined": float(supply),
-        "max_supply": float(max_supply),
-        "percent_mined": round((float(supply) / float(max_supply)) * 100, 4)
-    })
-
-def halving_info():
-    chain = load_chain()
-    config = load_chain_config()
-    height = len(chain)
-    supply = get_total_supply(chain)
-    max_supply = float(config.get("max_supply", 21000000))
-    current_reward = calculate_reward(height, supply)
-    next_halving_height = 840000
-    next_reward = current_reward
-    for item in config.get("reward_schedule", []):
-        if height < int(item["height"]):
-            next_halving_height = 840000
-            next_reward = float(item["reward"])
-            break
-    return {
-        "current_height": height,
-        "current_reward": current_reward,
-        "next_halving_height": next_halving_height,
-        "blocks_until_halving": (next_halving_height - height) if next_halving_height else 0,
-        "next_reward": next_reward,
-        "total_supply_mined": supply,
-        "max_supply": max_supply,
-        "percent_mined": round((supply / max_supply) * 840000, 6) if max_supply else 0,
-    }
+    try:
+        import core
+        chain = core.read_json(core.CHAIN_FILE, [])
+        height = len(chain)
+        config = core.load_chain_config()
+        halving_interval = int(config.get("halving_interval") or 2100000)
+        initial_reward = float(config.get("initial_reward") or 50.0)
+        current_reward = float(core.get_block_reward(height + 1))
+        era = int(height // halving_interval) + 1
+        blocks_left = int(halving_interval - (height % halving_interval))
+        return jsonify({
+            "current_height": height,
+            "current_era": era,
+            "block_reward": current_reward,
+            "current_reward": current_reward,
+            "blocks_until_next_halving": blocks_left,
+            "halving_interval": halving_interval,
+            "max_supply": float(config.get("max_supply") or 210000000.0)
+        }), 200
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route("/merkle_proof/<txid>")

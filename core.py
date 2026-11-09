@@ -27,7 +27,7 @@ CHAIN_CONFIG_FILE = "chain_config.json"
 DB_PATH = "blockchain_state.sqlite3"
 NETWORK = "NETWORK"
 MINING_REWARD_SIGNATURE = "MINING_REWARD"
-MAX_SUPPLY = Decimal("21000000")
+MAX_SUPPLY = Decimal("2100000000")
 MIN_REWARD = Decimal("0.1")
 DEFAULT_FEE = Decimal("1")
 TARGET_BLOCK_TIME = 60
@@ -52,12 +52,12 @@ DEFAULT_CHAIN_CONFIG = {
     "network_id": "kwd-testnet-local",
     "genesis_message": "KWD local testnet genesis",
     "genesis_timestamp": 1782300000.0,
-    "max_supply": 21000000,
+    "max_supply": 2100000000.00,
     "initial_reward": 50,
     "min_reward": 0.1,
     "default_fee": 1,
     "target_block_time": 60,
-    "difficulty_adjustment_interval": 10,
+    "difficulty_adjustment_interval": 1440,
     "max_future_block_time": 120,
     "min_difficulty": 1,
     "max_difficulty": 8,
@@ -875,7 +875,14 @@ def validate_block(
     merkle_pow_hash = hashlib.sha256(
         f'{block["previous_hash"]}{block.get("merkle_root", "")}{block["proof"]}'.encode()
     ).hexdigest()
-    if not (pow_hash.startswith("0" * difficulty) or merkle_pow_hash.startswith("0" * difficulty)):
+    block_target = (1 << (256 - (difficulty * 4))) - 1
+    is_valid_pow = (
+        int(expected_hash, 16) < block_target or
+        expected_hash.startswith("0" * difficulty) or
+        pow_hash.startswith("0" * difficulty) or
+        merkle_pow_hash.startswith("0" * difficulty)
+    )
+    if not is_valid_pow:
         return False, f"{prefix} proof of work is invalid"
     if previous_block is None:
         if block["previous_hash"] != "0":
@@ -959,7 +966,14 @@ def validate_candidate_block(block, check_future_time=True, prefix="Candidate bl
     merkle_pow_hash = hashlib.sha256(
         f'{block["previous_hash"]}{block.get("merkle_root", "")}{block["proof"]}'.encode()
     ).hexdigest()
-    if not (pow_hash.startswith("0" * difficulty) or merkle_pow_hash.startswith("0" * difficulty)):
+    block_target = (1 << (256 - (difficulty * 4))) - 1
+    is_valid_pow = (
+        int(expected_hash, 16) < block_target or
+        expected_hash.startswith("0" * difficulty) or
+        pow_hash.startswith("0" * difficulty) or
+        merkle_pow_hash.startswith("0" * difficulty)
+    )
+    if not is_valid_pow:
         return False, f"{prefix} proof of work is invalid"
     reward_count = 0
     seen_txids = set()
@@ -1159,3 +1173,13 @@ def create_signed_transaction(private_key_hex, receiver, amount, fee=None, nonce
 
 
 
+
+
+def get_block_reward(block_index):
+    config = load_chain_config()
+    initial = float(config.get("initial_reward", 50.0))
+    halving_interval = int(config.get("halving_interval", 2100000))
+    halvings = (max(1, int(block_index)) - 1) // halving_interval
+    if halvings >= 33:
+        return 0.0
+    return round(initial / (2 ** halvings), 8)
