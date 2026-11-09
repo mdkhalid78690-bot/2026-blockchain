@@ -1,0 +1,17 @@
+KAWAIDCOIN (KWD) DECENTRALIZED MINING GUIDE
+============================================
+
+KawaidCoin has no central authority or admin key.
+Anyone running this miner competes permissionlessly for block rewards.
+
+HOW TO RUN:
+1. Install Python 3.8+ (check 'Add Python to PATH' during installation).
+2. Open a terminal in this folder and install dependencies:
+   pip install -r requirements.txt
+3. Run the miner:
+   start_miner.bat (Windows) or python kwd_remote_miner.py <YOUR_WALLET_ADDRESS>
+
+CONSENSUS PARAMETERS:
+- Target Block Time : 60 seconds
+- Starting Target   : Difficulty 6
+- Era 1 Reward      : 50.0 KWD per block directly to your address
