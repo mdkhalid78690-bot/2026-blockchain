@@ -1,0 +1,13 @@
+[sync_chain] local_length=82 local_work=1312
+[sync_chain] peer=127.0.0.1:5001 url=http://127.0.0.1:5001 status=timeout reason=request timed out error=HTTPConnectionPool(host='127.0.0.1', port=5001): Read timed out. (read timeout=5)
+[sync_chain] peer=127.0.0.1:5002 url=http://127.0.0.1:5002 status=timeout reason=request timed out error=HTTPConnectionPool(host='127.0.0.1', port=5002): Read timed out. (read timeout=5)
+[sync_chain] peer=127.0.0.1:5003 url=http://127.0.0.1:5003 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5003): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5003): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5004 url=http://127.0.0.1:5004 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5004): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5004): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] selected_peer=None local_length=82 peer_length=82 replacement=False final_length=82 reason=all peer responses failed or were rejected
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.228.215.36:5000
+Press CTRL+C to quit

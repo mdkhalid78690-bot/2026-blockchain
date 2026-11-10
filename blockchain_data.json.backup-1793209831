@@ -1,0 +1,34 @@
+[
+    {
+        "index": 1,
+        "timestamp": 1782300000.0,
+        "genesis_message": "KWD local testnet genesis",
+        "network_id": "kwd-testnet-local",
+        "transactions": [],
+        "proof": 3,
+        "difficulty": 1,
+        "previous_hash": "0",
+        "hash": "a633e67afd16eb9e023948da64e6751c57fbc662f6166bca17b7677158b849e0"
+    },
+    {
+        "index": 2,
+        "timestamp": 1786023785.5271099,
+        "transactions": [
+            {
+                "transaction": {
+                    "from": "NETWORK",
+                    "to": "acbf60e4c8c8c359ccd978ab7cf51e2999869263738d9eb4378fa3979d91b08a",
+                    "amount": 50.0,
+                    "base_reward": 50.0,
+                    "fees": 0,
+                    "timestamp": 1786023785.5291097
+                },
+                "signature": "MINING_REWARD"
+            }
+        ],
+        "proof": 0,
+        "difficulty": 1,
+        "previous_hash": "a633e67afd16eb9e023948da64e6751c57fbc662f6166bca17b7677158b849e0",
+        "hash": "6ce6e231b7cf6bde8d50eead0bc3450d3606ae1142542b6dfb76bcc8fa374b14"
+    }
+]

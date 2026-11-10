@@ -1,0 +1,13 @@
+[
+    {
+        "index": 1,
+        "timestamp": 1782300000.0,
+        "genesis_message": "KWD local testnet genesis",
+        "network_id": "kwd-testnet-local",
+        "transactions": [],
+        "proof": 3,
+        "difficulty": 1,
+        "previous_hash": "0",
+        "hash": "a633e67afd16eb9e023948da64e6751c57fbc662f6166bca17b7677158b849e0"
+    }
+]

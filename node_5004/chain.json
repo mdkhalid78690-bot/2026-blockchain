@@ -1,0 +1,25 @@
+[
+  {
+    "index": 0,
+    "timestamp": 1782300000.0,
+    "transactions": [
+      {
+        "transaction": {
+          "from": "0",
+          "to": "1a0e9dc843e74c4335bb10c75cbe0d9bf307c4b300618cd8df2e10d75aaea19d",
+          "amount": 50.0,
+          "base_reward": 50.0,
+          "fees": 0.0,
+          "timestamp": 1782300000.0
+        },
+        "signature": "MINING_REWARD"
+      }
+    ],
+    "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "merkle_root": "cad3632c04afaae2ff2ec91a2aed02393b5661218867426acdd008ba00c5342b",
+    "proof": 0,
+    "difficulty": 6,
+    "nonce": 0,
+    "hash": "1430eb8d73cf6ca994da25c7cbc7d0c347b233fabe81d6b574724461c1457422"
+  }
+]

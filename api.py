@@ -276,14 +276,16 @@ def signed_get(url, **kwargs):
     headers = build_peer_headers(kwargs.pop("path", ""))
     kwargs.setdefault("headers", {})
     kwargs["headers"].update(headers)
-    return requests.get(url, **kwargs, timeout=3)
+    kwargs.setdefault("timeout", 3)
+    return requests.get(url, **kwargs)
 
 
 def signed_post(url, **kwargs):
     headers = build_peer_headers(kwargs.pop("path", ""), payload=kwargs.get("json"))
     kwargs.setdefault("headers", {})
     kwargs["headers"].update(headers)
-    return requests.post(url, **kwargs, timeout=3)
+    kwargs.setdefault("timeout", 3)
+    return requests.post(url, **kwargs)
 
 
 def is_admin_authorized():
@@ -408,6 +410,9 @@ def enforce_security():
 
 @app.before_request
 def before_request():
+    # Consensus & Mining RPC bypass
+    if request.path in {'/receive_block', '/sync_chain', '/status', '/health', '/node_info'} or request.path.startswith('/mining_job'):
+        return None
     if request.method == "OPTIONS":
         return None
     return enforce_security()
@@ -1362,15 +1367,12 @@ def get_block_fees(index):
 
 
 @app.route("/block/<int:index>/reward")
-def get_block_reward(height):
-    if height <= 100:
-        return 50.0
-    elif height <= 200:
-        return 25.0
-    else:
-        # True 21M emission schedule: halves every 840,000 blocks
-        era = (height - 200) // 840000
-        return max(12.5 / (2 ** era), 0.00000001)
+def get_block_reward(index):
+    try:
+        reward = core.get_block_reward(index)
+        return {"block_index": index, "reward": reward, "ticker": "KWD"}
+    except Exception as e:
+        return {"error": str(e)}, 500
 
 def get_block_by_hash(hash):
     for block in load_chain():
@@ -2829,18 +2831,34 @@ def halving_info():
         height = len(chain)
         config = core.load_chain_config()
         halving_interval = int(config.get("halving_interval") or 2100000)
+        max_supply = float(config.get("max_supply") or 210000000.0)
         initial_reward = float(config.get("initial_reward") or 50.0)
-        current_reward = float(core.get_block_reward(height + 1))
+        
         era = int(height // halving_interval) + 1
-        blocks_left = int(halving_interval - (height % halving_interval))
+        current_reward = float(core.get_block_reward(height))
+        next_reward = round(current_reward / 2.0, 4)
+        next_halving_h = era * halving_interval
+        blocks_left = int(next_halving_h - height)
+        
+        # Calculate true base minted subsidy
+        total_mined = 0.0
+        for b in chain:
+            b_idx = b.get("index", 0)
+            if b_idx > 1:
+                total_mined += core.calculate_reward(b_idx, supply=0)
+                
         return jsonify({
             "current_height": height,
             "current_era": era,
             "block_reward": current_reward,
             "current_reward": current_reward,
+            "next_reward": next_reward,
+            "blocks_until_halving": blocks_left,
             "blocks_until_next_halving": blocks_left,
+            "next_halving_height": next_halving_h,
             "halving_interval": halving_interval,
-            "max_supply": float(config.get("max_supply") or 210000000.0)
+            "total_supply_mined": total_mined,
+            "max_supply": max_supply
         }), 200
     except Exception as e:
         import traceback
@@ -2897,8 +2915,8 @@ def faucet(address):
         signed_tx = create_signed_transaction(
             wallet1["private_key"],
             address,
-            10.0,
-            fee=1.0,
+            1.0,
+                fee=0.05,
             chain=chain,
             mempool=mempool_data,
         )
@@ -2911,7 +2929,7 @@ def faucet(address):
     save_mempool(mempool_data, reason="faucet payout")
     broadcast_transaction(signed_tx)
     return {
-        "message": "Faucet sent 10 KWD to your wallet!",
+        "message": "Faucet sent 1 KWD to your wallet!",
         "recipient": address,
         "amount": 1.0,
         "txid": tx_id(signed_tx),
@@ -3581,6 +3599,55 @@ elif not os.path.exists("wallet1.json"):
             json.dump({"address": _addr, "public_key": _pub, "private_key": _sk.to_string().hex()}, _wf, separators=(',', ':'))
     except Exception:
         pass
+
+
+@app.route("/mining_job", methods=["GET"])
+def mining_job():
+    import core
+    miner_addr = request.args.get("address", "").strip()
+    if not miner_addr:
+        return {"error": "Missing miner address parameter"}, 400
+    
+    chain = load_chain()
+    if not chain:
+        return {"error": "Chain not initialized"}, 500
+    
+    mempool = load_mempool() or []
+    accepted_txs = []
+    for tx in mempool:
+        valid, _ = core.validate_transaction(tx, chain, accepted_txs)
+        if valid:
+            accepted_txs.append(tx)
+            
+    current_height = len(chain)
+    reward = core.calculate_reward(current_height, core.get_total_supply(chain))
+    fees = core.get_pending_fee_total(accepted_txs)
+    
+    coinbase_tx = {
+        "transaction": {
+            "from": core.NETWORK,
+            "to": miner_addr,
+            "amount": reward + fees,
+            "base_reward": reward,
+            "fees": fees,
+            "timestamp": time.time(),
+        },
+        "signature": core.MINING_REWARD_SIGNATURE,
+    }
+    all_txs = accepted_txs + [coinbase_tx]
+    merkle_root = core.compute_merkle_root(all_txs)
+    previous_hash = chain[-1]["hash"]
+    difficulty = core.calculate_next_difficulty(chain)
+    
+    return {
+        "index": len(chain) + 1,
+        "timestamp": time.time(),
+        "transactions": all_txs,
+        "merkle_root": merkle_root,
+        "difficulty": difficulty,
+        "previous_hash": previous_hash
+    }
+
 
 if __name__ == "__main__":
     config = read_json("node_config.json", {})

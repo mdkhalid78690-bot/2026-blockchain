@@ -1,0 +1,362 @@
+Bootstrapping network...
+Synchronizing blockchain...
+Synchronizing mempool...
+Node ready.
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.85.196.36:5001
+Press CTRL+C to quit
+127.0.0.1 - - [11/Jul/2026 23:16:02] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [11/Jul/2026 23:16:02] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [11/Jul/2026 23:16:08] "GET /health HTTP/1.1" 200 -
+[sync_chain] local_length=82 local_work=1312
+[sync_chain] peer=127.0.0.1:5000 url=http://127.0.0.1:5000 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5002 url=http://127.0.0.1:5002 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5002): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5002): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5003 url=http://127.0.0.1:5003 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5003): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5003): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5004 url=http://127.0.0.1:5004 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5004): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5004): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] selected_peer=None local_length=82 peer_length=82 replacement=False final_length=82 reason=all peer responses failed or were rejected
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.228.215.36:5001
+Press CTRL+C to quit
+127.0.0.1 - - [12/Jul/2026 15:53:00] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:53:24] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:53:24] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:53:32] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:53:32] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:53:39] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:53:41] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:53:58] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:53:59] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:54:24] "GET /chain HTTP/1.1" 200 -
+[sync_chain] local_length=82 local_work=1312
+[sync_chain] peer=127.0.0.1:5000 url=http://127.0.0.1:5000 status=timeout reason=request timed out error=HTTPConnectionPool(host='127.0.0.1', port=5000): Read timed out. (read timeout=5)
+[sync_chain] peer=127.0.0.1:5002 url=http://127.0.0.1:5002 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5002): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5002): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5003 url=http://127.0.0.1:5003 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5003): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5003): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5004 url=http://127.0.0.1:5004 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5004): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5004): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] selected_peer=None local_length=82 peer_length=82 replacement=False final_length=82 reason=all peer responses failed or were rejected
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.228.215.36:5001
+Press CTRL+C to quit
+127.0.0.1 - - [12/Jul/2026 15:57:23] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:57:26] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:57:31] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:57:54] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:57:58] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:00] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:03] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:05] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:24] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:30] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:38] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:38] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:42] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:48] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:55] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:55] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:58:59] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:59:04] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:59:08] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:59:23] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:59:27] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:59:41] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 15:59:56] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:00:00] "GET /wallet_registry HTTP/1.1" 200 -
+[sync_chain] local_length=82 local_work=1312
+[sync_chain] peer=127.0.0.1:5000 url=http://127.0.0.1:5000 status=timeout reason=request timed out error=HTTPConnectionPool(host='127.0.0.1', port=5000): Read timed out. (read timeout=5)
+[sync_chain] peer=127.0.0.1:5002 url=http://127.0.0.1:5002 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5002): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5002): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5003 url=http://127.0.0.1:5003 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5003): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5003): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5004 url=http://127.0.0.1:5004 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5004): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5004): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] selected_peer=None local_length=82 peer_length=82 replacement=False final_length=82 reason=all peer responses failed or were rejected
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.228.215.36:5001
+Press CTRL+C to quit
+127.0.0.1 - - [12/Jul/2026 16:08:14] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:08:52] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:09:02] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:09:10] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:09:12] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:09:20] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:09:30] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:09:37] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:10:07] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:10:23] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:10:37] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:10:46] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:10:57] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:11:02] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:11:29] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:11:39] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:12:06] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:12:07] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:12:15] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:12:22] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:12:26] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:12:41] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:12:51] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:12:59] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:13:07] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:13:16] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:13:38] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:13:44] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:14:17] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:14:24] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:14:38] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:14:41] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:14:55] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:14:56] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:14:59] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:15:29] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:15:38] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:16:08] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:16:13] "GET /chain HTTP/1.1" 200 -
+[sync_chain] local_length=82 local_work=1312
+[sync_chain] peer=127.0.0.1:5000 url=http://127.0.0.1:5000 status=timeout reason=request timed out error=HTTPConnectionPool(host='127.0.0.1', port=5000): Read timed out. (read timeout=5)
+[sync_chain] peer=127.0.0.1:5002 url=http://127.0.0.1:5002 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5002): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5002): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5003 url=http://127.0.0.1:5003 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5003): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5003): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5004 url=http://127.0.0.1:5004 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5004): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5004): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] selected_peer=None local_length=82 peer_length=82 replacement=False final_length=82 reason=all peer responses failed or were rejected
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.228.215.36:5001
+Press CTRL+C to quit
+127.0.0.1 - - [12/Jul/2026 16:24:21] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:24:37] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:24:39] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:24:39] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:24:40] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:24:41] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:24:41] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:24:57] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:24:57] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:24:57] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:00] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:01] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:01] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:13] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:15] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:16] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:21] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:21] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:21] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:22] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:36] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:37] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:39] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:40] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:42] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:42] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:57] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:57] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:25:58] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:26:00] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:26:01] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:26:32] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:26:39] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:26:46] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:26:53] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:27:02] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:27:08] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:27:10] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:27:12] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:27:12] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:27:43] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:29:43] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:29:47] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:29:53] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:29:59] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:30:10] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:30:21] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:30:31] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:30:35] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:30:41] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:31:04] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:31:15] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:31:22] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:31:34] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:31:47] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:31:47] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:32:09] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:32:45] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:32:54] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:33:00] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:33:07] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:33:15] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:33:41] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:33:50] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:34:01] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:34:16] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:34:24] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:34:25] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:34:34] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:34:46] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:34:52] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:35:04] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:35:12] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:35:56] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:36:18] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:36:21] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:36:22] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:36:23] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:36:45] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:36:49] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:36:56] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:37:13] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:37:19] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:37:24] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:37:25] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:37:51] "GET /chain HTTP/1.1" 200 -
+[sync_chain] local_length=82 local_work=1312
+[sync_chain] peer=127.0.0.1:5000 url=http://127.0.0.1:5000 status=timeout reason=request timed out error=HTTPConnectionPool(host='127.0.0.1', port=5000): Read timed out. (read timeout=5)
+[sync_chain] peer=127.0.0.1:5002 url=http://127.0.0.1:5002 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5002): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5002): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5003 url=http://127.0.0.1:5003 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5003): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5003): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5004 url=http://127.0.0.1:5004 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5004): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5004): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] selected_peer=None local_length=82 peer_length=82 replacement=False final_length=82 reason=all peer responses failed or were rejected
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.228.215.36:5001
+Press CTRL+C to quit
+127.0.0.1 - - [12/Jul/2026 16:56:37] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:57:09] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:57:16] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:57:23] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:57:33] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:57:42] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:57:43] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:57:47] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:57:52] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:57:52] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:58:32] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:58:53] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:58:58] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:59:08] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:59:16] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:59:28] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:59:41] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:59:41] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 16:59:48] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:00:13] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:00:14] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:00:21] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:00:27] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:01:00] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:01:04] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:01:05] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:01:12] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:01:19] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:01:25] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:01:50] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:02:02] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:02:31] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:02:41] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:02:49] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:02:50] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:02:56] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:03:12] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:03:25] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:03:30] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:03:57] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:04:06] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:04:10] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:04:22] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:04:31] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:04:37] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:04:40] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:04:44] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:05:20] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:05:33] "GET /chain HTTP/1.1" 200 -
+[sync_chain] local_length=82 local_work=1312
+[sync_chain] peer=127.0.0.1:5000 url=http://127.0.0.1:5000 status=timeout reason=request timed out error=HTTPConnectionPool(host='127.0.0.1', port=5000): Read timed out. (read timeout=5)
+[sync_chain] peer=127.0.0.1:5002 url=http://127.0.0.1:5002 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5002): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5002): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5003 url=http://127.0.0.1:5003 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5003): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5003): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] peer=127.0.0.1:5004 url=http://127.0.0.1:5004 status=error reason=request failed error=HTTPConnectionPool(host='127.0.0.1', port=5004): Max retries exceeded with url: /chain (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=5004): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+[sync_chain] selected_peer=None local_length=82 peer_length=82 replacement=False final_length=82 reason=all peer responses failed or were rejected
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://10.228.215.36:5001
+Press CTRL+C to quit
+127.0.0.1 - - [12/Jul/2026 17:18:49] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:19:21] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:19:28] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:19:33] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:19:42] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:19:43] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:19:50] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:19:55] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:19:57] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:19:59] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:20:37] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:20:59] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:02] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:07] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:14] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:15] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:32] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:39] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:39] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:40] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:42] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:44] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:46] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:47] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:21:50] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:09] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:12] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:20] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:20] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:20] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:20] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:23] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:31] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:47] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:50] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:55] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:22:58] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:23:03] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:23:07] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:23:13] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:23:13] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:23:16] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:23:19] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:23:47] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:23:48] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:23:53] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:24:10] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:24:29] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:24:36] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:24:43] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:24:44] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:24:44] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:24:59] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:25:03] "GET /mempool HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:25:29] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:25:29] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:25:39] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:25:47] "GET /chain HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:25:51] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:26:08] "GET /public_keys HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:26:15] "GET /wallet_registry HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 17:26:17] "GET /chain HTTP/1.1" 200 -

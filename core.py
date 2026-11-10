@@ -471,19 +471,19 @@ def get_pending_fee_total(transactions):
 
 
 def calculate_reward(height, supply=0):
-    if height < 100:
-        return 50.0
-    elif height < 200:
-        return 25.0
-    elif height < 300:
-        return 12.5
-    elif 300 <= height < 326:
-        return 6.25
-    elif height <= 840000:
-        return 12.5
-    else:
-        era = (height - 840001) // 840000 + 1
-        return max(12.5 / (2 ** era), 0.00000001)
+    max_supply = 210000000.0
+    if supply >= max_supply:
+        return 0.0
+    halving_interval = 2100000
+    halvings = height // halving_interval
+    if halvings >= 64:
+        return 0.0
+    reward = 50.0 / (2 ** halvings)
+    if reward < 0.00000001:
+        return 0.0
+    if supply + reward > max_supply:
+        reward = max(0.0, max_supply - supply)
+    return round(reward, 8)
 
 def calculate_next_difficulty(chain):
     config = load_chain_config()
@@ -594,10 +594,7 @@ def register_wallet(address=None, public_key=None, wallet=None, metadata=None):
 def verify_transaction_signature(tx_data, public_keys=None):
     signature = tx_signature(tx_data)
     if signature == MINING_REWARD_SIGNATURE:
-        _VALID_CHAIN_CACHE["length"] = len(chain)
-    _VALID_CHAIN_CACHE["last_hash"] = last_hash
-    _VALID_CHAIN_CACHE["result"] = (True, None)
-    return True, None
+        return True, None
     tx = tx_payload(tx_data)
     if not isinstance(tx, dict):
         return False, "Transaction payload must be an object"
@@ -1026,8 +1023,6 @@ def validate_chain(chain):
     if not ok:
         return False, error
 
-    _VALID_CHAIN_CACHE["length"] = len(chain)
-    _VALID_CHAIN_CACHE["last_hash"] = last_hash
     _VALID_CHAIN_CACHE["result"] = (True, None)
     return True, None
 

@@ -2,6 +2,11 @@ import sys, time, hashlib, json, requests
 
 DEFAULT_NODE = "http://127.0.0.1:5000"
 
+def canonical_hash_block(block):
+    block_copy = {k: v for k, v in block.items() if k != "hash"}
+    raw = json.dumps(block_copy, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(raw.encode()).hexdigest()
+
 def get_target(difficulty):
     return "0" * int(difficulty)
 
@@ -11,69 +16,83 @@ def fetch_work(node_url, address):
         if r.status_code == 200:
             return r.json()
     except Exception as e:
-        print(f"[!] Node connection error ({node_url}): {e}")
+        print(f"[!] Node connection error: {e}")
     return None
 
 def submit_block(node_url, block_data):
     try:
-        r = requests.post(f"{node_url}/mine", json=block_data, timeout=10)
-        return r.status_code == 200, r.text
+        r = requests.post(f"{node_url}/receive_block", json=block_data, timeout=10)
+        return r.status_code in (200, 201), r.text
     except Exception as e:
         return False, str(e)
 
 def mine_loop(address, node_url):
-    print("=" * 60)
-    print("       KAWAIDCOIN (KWD) PROOF-OF-WORK CPU MINER")
-    print("=" * 60)
+    print("=" * 65)
+    print("       KAWAIDCOIN (KWD) LIGHTWEIGHT REMOTE MINER")
+    print("=" * 65)
     print(f"Payout Wallet Address : {address}")
     print(f"Connected Seed Node   : {node_url}")
-    print("Target Target Epoch   : 60s Block Target | Halving every 2.1M")
-    print("=" * 60)
+    print("=" * 65)
 
     last_index = -1
+    proof = 0
+    work = None
+    last_poll_time = 0
+
     while True:
-        work = fetch_work(node_url, address)
-        if not work or "index" not in work:
-            time.sleep(3)
-            continue
+        now = time.time()
+        if work is None or (now - last_poll_time > 10):
+            new_work = fetch_work(node_url, address)
+            last_poll_time = now
+            if new_work and "index" in new_work:
+                if work is None or new_work["index"] != last_index:
+                    work = new_work
+                    last_index = work["index"]
+                    diff = work["difficulty"]
+                    target = get_target(diff)
+                    proof = 0
+                    print(f"\n[+] New Template: Block #{last_index} | Target Difficulty: {diff} (0x{'0'*diff}...)")
+            else:
+                if work is None:
+                    time.sleep(2)
+                    continue
 
-        index = work["index"]
-        if index != last_index:
-            last_index = index
-            diff = work["difficulty"]
-            target = get_target(diff)
-            print(f"
-[+] New Mining Work Received: Block #{index} | Target Difficulty: {diff}")
+        prev_hash = work["previous_hash"]
+        merkle_root = work["merkle_root"]
+        target = get_target(work["difficulty"])
 
-        # Nonce search loop (10,000 hashes per batch to keep responsive)
-        raw_header = f"{work['index']}{work['previous_hash']}{work['merkle_root']}{work['timestamp']}{work['difficulty']}"
-        start_nonce = int(time.time() * 1000) % 1000000
-        found = False
+        batch_start = time.time()
+        batch_size = 500000
+        solved = False
 
-        for n in range(start_nonce, start_nonce + 25000):
-            h = hashlib.sha256(f"{raw_header}{n}".encode()).hexdigest()
+        for _ in range(batch_size):
+            h = hashlib.sha256(f"{prev_hash}{merkle_root}{proof}".encode()).hexdigest()
             if h.startswith(target):
-                print(f"[>>>] BLOCK SOLVED! Nonce: {n} -> Hash: {h[:28]}...")
-                work["nonce"] = n
-                work["hash"] = h
+                print(f"\n>>> [SOLVED] Block #{last_index}! Proof: {proof} -> PoW Hash: {h[:24]}...")
+                work["proof"] = proof
+                work["hash"] = canonical_hash_block(work)
+                print(f"[+] Canonical Block Hash: {work['hash'][:24]}...")
+                
                 ok, res = submit_block(node_url, work)
                 if ok:
-                    print(f"[PASS] Block #{index} accepted by network! 50.0 KWD reward credited.")
+                    print(f"[PASS] Block #{last_index} accepted by network! 50.0 KWD reward credited.\n")
                 else:
-                    print(f"[!] Submission rejected: {res}")
-                found = True
-                time.sleep(1)
+                    print(f"[!] Submission notice: {res}\n")
+                solved = True
+                work = None
+                time.sleep(2)
                 break
+            proof += 1
 
-        if not found:
-            time.sleep(0.05)
+        if not solved:
+            elapsed = max(time.time() - batch_start, 0.001)
+            hashrate = int(batch_size / elapsed)
+            print(f"[*] Mining Block #{last_index}... Nonce: {proof:>10} | Hashrate: {hashrate:,} H/s", end="\r")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python kwd_remote_miner.py <WALLET_ADDRESS> [OPTIONAL_NODE_URL]")
-        print("Example: python kwd_remote_miner.py 1a0e9dc843e74c4335bb... http://127.0.0.1:5000")
         sys.exit(1)
-
     miner_wallet = sys.argv[1].strip()
     target_node = sys.argv[2].strip() if len(sys.argv) >= 3 else DEFAULT_NODE
     mine_loop(miner_wallet, target_node)

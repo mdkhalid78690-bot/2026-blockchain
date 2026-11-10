@@ -1,0 +1,907 @@
+[
+    {
+        "timestamp": 1782569802.4206414,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782569802.53461,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782569802.7517264,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782569802.9766366,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782651266.3521905,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782651266.5862918,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": [
+                "127.0.0.1:5001"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782651266.7564678,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5002"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782651266.8968537,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782651267.0004425,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782651267.227462,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782651267.4355009,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782651339.0696929,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782651339.258367,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": [
+                "127.0.0.1:5001"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782651339.4519045,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5002"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782651339.58018,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782651339.665569,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782651339.8814485,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782651340.060422,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782652096.2369142,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782652096.4582102,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": [
+                "127.0.0.1:5001"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782652096.65712,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5002"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782652096.7925363,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782652096.8650706,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782652097.1339061,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782652097.3343399,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782669359.8590796,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782669360.0710673,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": [
+                "127.0.0.1:5001"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782669360.2664557,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5002"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782669360.4014494,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782669360.4844496,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782669360.7114515,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782669360.901688,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782670082.1012316,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782670082.3003736,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": []
+        }
+    },
+    {
+        "timestamp": 1782670082.4906688,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5001",
+                "127.0.0.1:5002"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782670082.611787,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782670082.7007878,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782670082.9287956,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782670083.1493728,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782757026.6463413,
+        "type": "backup_state",
+        "message": "State backup created",
+        "details": {
+            "path": "blockchain_data.json",
+            "backup_path": "blockchain_data.json.backup-1782757026"
+        }
+    },
+    {
+        "timestamp": 1782757026.7069333,
+        "type": "restore_state",
+        "message": "State recovery attempted",
+        "details": {
+            "path": "blockchain_data.json"
+        }
+    },
+    {
+        "timestamp": 1782757273.6178641,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782757273.949066,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": []
+        }
+    },
+    {
+        "timestamp": 1782757274.307869,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5001",
+                "127.0.0.1:5002"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782757274.5736434,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782757274.7329564,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782757275.2331934,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782757275.618478,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782757275.8483574,
+        "type": "test_event",
+        "message": "Audit entry created",
+        "details": {}
+    },
+    {
+        "timestamp": 1782758726.7007113,
+        "type": "backup_state",
+        "message": "State backup created",
+        "details": {
+            "path": "blockchain_data.json",
+            "backup_path": "blockchain_data.json.backup-1782758726"
+        }
+    },
+    {
+        "timestamp": 1782758726.7701993,
+        "type": "restore_state",
+        "message": "State recovery attempted",
+        "details": {
+            "path": "blockchain_data.json"
+        }
+    },
+    {
+        "timestamp": 1782758751.2159767,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782758751.601152,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": []
+        }
+    },
+    {
+        "timestamp": 1782758751.9183362,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5001",
+                "127.0.0.1:5002"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782758752.17066,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782758752.3681505,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782758752.7703872,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782758753.1798596,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782758753.454652,
+        "type": "test_event",
+        "message": "Audit entry created",
+        "details": {}
+    },
+    {
+        "timestamp": 1782759415.807499,
+        "type": "backup_state",
+        "message": "State backup created",
+        "details": {
+            "path": "blockchain_data.json",
+            "backup_path": "blockchain_data.json.backup-1782759415"
+        }
+    },
+    {
+        "timestamp": 1782759415.8574827,
+        "type": "restore_state",
+        "message": "State recovery attempted",
+        "details": {
+            "path": "blockchain_data.json"
+        }
+    },
+    {
+        "timestamp": 1782759458.8358476,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782759459.7068293,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": [
+                "127.0.0.1:5002"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782759460.2298272,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5001"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782759460.4168274,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782759460.5588276,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782759460.865831,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782759461.3248365,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782759461.5328329,
+        "type": "test_event",
+        "message": "Audit entry created",
+        "details": {}
+    },
+    {
+        "timestamp": 1782762441.5732827,
+        "type": "backup_state",
+        "message": "State backup created",
+        "details": {
+            "path": "blockchain_data.json",
+            "backup_path": "blockchain_data.json.backup-1782762441"
+        }
+    },
+    {
+        "timestamp": 1782762441.6426558,
+        "type": "restore_state",
+        "message": "State recovery attempted",
+        "details": {
+            "path": "blockchain_data.json"
+        }
+    },
+    {
+        "timestamp": 1782762485.82385,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782762486.402261,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": [
+                "127.0.0.1:5002"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782762486.9223168,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5001"
+            ]
+        }
+    },
+    {
+        "timestamp": 1782762487.1776083,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1782762487.3870971,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782762487.8216066,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782762488.241194,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1782762488.443192,
+        "type": "test_event",
+        "message": "Audit entry created",
+        "details": {}
+    },
+    {
+        "timestamp": 1783104324.2699635,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1783104328.8924363,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": []
+        }
+    },
+    {
+        "timestamp": 1783104333.2944531,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5001",
+                "127.0.0.1:5002",
+                "127.0.0.1:5003",
+                "127.0.0.1:5004"
+            ]
+        }
+    },
+    {
+        "timestamp": 1783104333.4327471,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1783104333.5277445,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1783104333.7947452,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1783104333.9958766,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1783104744.606662,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1783104746.556693,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": [
+                "127.0.0.1:5001",
+                "127.0.0.1:5002",
+                "127.0.0.1:5003",
+                "127.0.0.1:5004"
+            ]
+        }
+    },
+    {
+        "timestamp": 1783104748.5480115,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": []
+        }
+    },
+    {
+        "timestamp": 1783104748.6649022,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1783104748.7543418,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1783104748.9520657,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1783104749.167956,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1783791685.415089,
+        "type": "bootstrap_config",
+        "message": "Bootstrap configuration updated",
+        "details": {
+            "seed_nodes": [
+                "seed.example:443"
+            ]
+        }
+    },
+    {
+        "timestamp": 1783791694.309828,
+        "type": "trust_policy_update",
+        "message": "Promoted peers by reputation",
+        "details": {
+            "threshold": 10,
+            "promoted": []
+        }
+    },
+    {
+        "timestamp": 1783791703.0783463,
+        "type": "trust_policy_update",
+        "message": "Demoted peers by reputation",
+        "details": {
+            "threshold": -5,
+            "demoted": [
+                "127.0.0.1:5001",
+                "127.0.0.1:5002",
+                "127.0.0.1:5003",
+                "127.0.0.1:5004"
+            ]
+        }
+    },
+    {
+        "timestamp": 1783791703.2996342,
+        "type": "trust_policy_update_denied",
+        "message": "Admin authentication missing",
+        "details": {}
+    },
+    {
+        "timestamp": 1783791703.435629,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1783791703.9184082,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    },
+    {
+        "timestamp": 1783791704.3043258,
+        "type": "deployment_control",
+        "message": "Configuration changed",
+        "details": {
+            "key": "rate_limit",
+            "value": 30
+        }
+    }
+]

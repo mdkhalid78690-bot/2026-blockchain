@@ -1,0 +1,41 @@
+ * Serving Flask app 'api'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5004
+ * Running on http://10.228.215.36:5004
+Press CTRL+C to quit
+127.0.0.1 - - [12/Jul/2026 22:53:13] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:53:13] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:53:22] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:53:22] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:53:23] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:53:23] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:53:31] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:53:32] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:53:41] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:53:57] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:54:01] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:54:50] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:55:49] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:04] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:06] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:12] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:22] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:24] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:25] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:25] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:27] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:30] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:32] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:33] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:35] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:37] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:38] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:38] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:40] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:40] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:41] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:41] "GET /health HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:41] "GET /node_info HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2026 22:56:41] "GET /node_info HTTP/1.1" 200 -

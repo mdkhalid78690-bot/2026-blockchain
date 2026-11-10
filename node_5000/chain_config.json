@@ -1,0 +1,72 @@
+{
+    "security": {
+        "encrypt_private_keys": true,
+        "rate_limit": 0,
+        "rate_limit_window_seconds": 60,
+        "rate_limit_ban_seconds": 60,
+        "tls_enabled": false,
+        "tls_cert_path": "cert.pem",
+        "tls_key_path": "key.pem",
+        "monitoring_enabled": true
+    },
+    "network_name": "KawaidCoin Testnet",
+    "ticker": "KWD",
+    "network_id": "kwd-testnet-local",
+    "genesis_message": "KWD local testnet genesis",
+    "genesis_timestamp": 1782300000.0,
+    "max_supply": 21000000,
+    "initial_reward": 50,
+    "min_reward": 0.1,
+    "default_fee": 1,
+    "target_block_time": 60,
+    "difficulty_adjustment_interval": 10,
+    "max_future_block_time": 120,
+    "min_difficulty": 1,
+    "max_difficulty": 8,
+    "reward_schedule": [
+        {
+            "height": 100,
+            "reward": 25
+        },
+        {
+            "height": 200,
+            "reward": 12.5
+        },
+        {
+            "height": 300,
+            "reward": 6.25
+        },
+        {
+            "height": 400,
+            "reward": 3.125
+        },
+        {
+            "height": 500,
+            "reward": 1.5625
+        },
+        {
+            "height": 600,
+            "reward": 0.78125
+        }
+    ],
+    "peer_registration_token": null,
+    "seed_nodes": [
+        "http://127.0.0.1:5001",
+        "http://127.0.0.1:5002",
+        "http://127.0.0.1:5003",
+        "http://127.0.0.1:5004"
+    ],
+    "port": 5000,
+    "bootstrap_state": {
+        "last_bootstrap_status": "complete",
+        "last_bootstrap_timestamp": 1785999158.1900477,
+        "seed_added": 0,
+        "discovered_peer_added": 0,
+        "peer_count": 4,
+        "errors": [],
+        "public_keys_synced": false,
+        "public_key_count": 9,
+        "wallets_synced": false,
+        "wallet_count": 12
+    }
+}

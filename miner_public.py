@@ -48,7 +48,7 @@ while True:
                 sys.stdout.write(f"\r   -> Hashes: {nonce:,} | Elapsed: {elapsed}s | Hashrate: {rate:,} H/s")
                 sys.stdout.flush()
 
-        # Step 3: Submit completed block to node via /mine_block (0.01s, no timeout possible)
+        # Step 3: Submit completed block to node via /submit_block (0.01s, no timeout possible)
         payload = {
             "miner": MINER_WALLET,
             "proof": nonce,
@@ -57,15 +57,11 @@ while True:
             "index": height + 1
         }
         
-        sub = requests.post(f"{NODE_URL}/receive_block", json=payload, timeout=10)
+        sub = requests.post(f"{NODE_URL}/submit_block", json=payload, timeout=10)
         if sub.status_code in [200, 201]:
             session_blocks += 1
             print(f"\n   -> BLOCK #{height + 1} ACCEPTED ON-CHAIN! Total Mined: {session_blocks} blocks (+12.5 KWD)")
-        else:
-            # Fallback to standard endpoint if /mine_block format differs
-            requests.get(f"{NODE_URL}/mine?miner={MINER_WALLET}", timeout=60)
-            session_blocks += 1
-            print(f"\n   -> BLOCK #{height + 1} ACCEPTED ON-CHAIN! Total Mined: {session_blocks} blocks")
+        
 
         time.sleep(1)
 

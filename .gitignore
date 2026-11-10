@@ -1,34 +1,8 @@
-# Python artifacts
+﻿*.key
+*.pem
+wallet*.json
+private_key*
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-
-# Private keys and local wallets
-*wallet*.json
-*keys*.json
-*.pem
-*.key
-hal_finney_wallet.json
-
-# Local backups and databases
-*.backup*
-*.sqlite3
-backup/
-legacy_archive/
-
-# Build and installer artifacts
-build/
-dist/
-*.spec
-*.zip
-
-# Local multi-node test directories
-node_*/
-*node2*/
-
-# Local logs and editor files
-*.log
-*.tmp
-.vscode/
-.idea/
+venv/
+.env
