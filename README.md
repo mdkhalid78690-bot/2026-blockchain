@@ -11,6 +11,10 @@ KawaidCoin (KWD) is an open-source Proof-of-Work cryptocurrency built on SHA-256
 - Retarget: 1,440 blocks (24 hours)
 - Difficulty: 6 (Standard CPU baseline)
 
+## Official Network Endpoints
+- **Public Block Explorer:** http://kawaidcoin.xyz
+- **Official Seed Node:** http://kawaidcoin.xyz (Direct IP: `129.225.86.198:5000`)
+
 ## Quick Start
 1. Install dependencies: pip install -r requirements.txt
 2. Run node: python api.py
