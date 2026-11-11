@@ -1,9 +1,11 @@
-# KawaidCoin (KWD) Lightweight Miner
+﻿# KawaidCoin (KWD) Official CPU Miner
 
-Max Supply: 210,000,000 KWD
-Block Reward: 50 KWD (Halving every 2,100,000 blocks)
+- Max Supply: 210,000,000 KWD
+- Initial Block Reward: 50.0 KWD (Halving every 2,100,000 blocks)
+- Mainnet Seed Node: https://kawaidcoin.xyz
 
-## How to Mine:
-1. Double click `start_mining.bat` (or run `python kwd_miner.py <YOUR_ADDRESS> http://10.51.134.36:5000`)
-2. It will automatically generate `my_kwd_wallet.json` if you don't already have one.
-3. Every solved block credits 50 KWD directly to your address on the blockchain!
+## Quick Start (Windows / Mac / Linux):
+1. Install Python 3.8+ and run: `pip install -r requirements.txt`
+2. Double-click `start_mining.bat` (auto-creates `my_kwd_wallet.json` and mines to https://kawaidcoin.xyz), OR run:
+   `python kwd_remote_miner.py <YOUR_WALLET_ADDRESS> https://kawaidcoin.xyz`
+3. Keep `my_kwd_wallet.json` backed up safely offline — never share your private key.

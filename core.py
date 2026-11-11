@@ -27,7 +27,7 @@ CHAIN_CONFIG_FILE = "chain_config.json"
 DB_PATH = "blockchain_state.sqlite3"
 NETWORK = "NETWORK"
 MINING_REWARD_SIGNATURE = "MINING_REWARD"
-MAX_SUPPLY = Decimal("2100000000")
+MAX_SUPPLY = Decimal("210000000")
 MIN_REWARD = Decimal("0.1")
 DEFAULT_FEE = Decimal("1")
 TARGET_BLOCK_TIME = 60
@@ -52,7 +52,7 @@ DEFAULT_CHAIN_CONFIG = {
     "network_id": "kwd-testnet-local",
     "genesis_message": "KWD local testnet genesis",
     "genesis_timestamp": 1782300000.0,
-    "max_supply": 2100000000.00,
+    "max_supply": 210000000.00,
     "initial_reward": 50,
     "min_reward": 0.1,
     "default_fee": 1,
@@ -1178,3 +1178,4 @@ def get_block_reward(block_index):
     if halvings >= 33:
         return 0.0
     return round(initial / (2 ** halvings), 8)
+

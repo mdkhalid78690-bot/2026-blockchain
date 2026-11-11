@@ -1,17 +1,20 @@
-KAWAIDCOIN (KWD) DECENTRALIZED MINING GUIDE
+﻿KAWAIDCOIN (KWD) DECENTRALIZED MINING GUIDE
 ============================================
 
-KawaidCoin has no central authority or admin key.
-Anyone running this miner competes permissionlessly for block rewards.
+KawaidCoin is an open SHA-256 Proof-of-Work network with a 210,000,000 KWD supply cap.
+Anyone running this miner competes permissionlessly for 50.0 KWD block rewards.
 
 HOW TO RUN:
-1. Install Python 3.8+ (check 'Add Python to PATH' during installation).
+1. Install Python 3.8+ (check 'Add Python to PATH' on Windows).
 2. Open a terminal in this folder and install dependencies:
    pip install -r requirements.txt
-3. Run the miner:
-   start_miner.bat (Windows) or python kwd_remote_miner.py <YOUR_WALLET_ADDRESS>
+3. Generate a wallet (if you do not have one):
+   python generate_wallet.py
+4. Start mining on Mainnet:
+   start_mining.bat   (or: python kwd_remote_miner.py <YOUR_WALLET_ADDRESS> https://kawaidcoin.xyz)
 
 CONSENSUS PARAMETERS:
+- Max Supply        : 210,000,000 KWD
+- Halving Interval  : Every 2,100,000 blocks (10x Bitcoin schedule)
 - Target Block Time : 60 seconds
-- Starting Target   : Difficulty 6
-- Era 1 Reward      : 50.0 KWD per block directly to your address
+- Era 1 Reward      : 50.0 KWD per block directly to your wallet

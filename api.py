@@ -1,4 +1,4 @@
-
+﻿
 # --- SATOSHI 10-MINUTE CONSENSUS ENGINE ---
 MAX_TARGET = 0x0000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 TARGET_BLOCK_TIME = 600  # 10 minutes per block (seconds)
@@ -1135,7 +1135,7 @@ def home():
   <div class="box">
     <div class="badge">KWD Blockchain API Running ? SHA-256 Proof-of-Work</div>
     <h1 style="margin:8px 0;color:#fff;">KawaidCoin (KWD) Mainnet Portal</h1>
-    <p style="color:#9ca3af;line-height:1.6;">Open-source SHA-256 Proof-of-Work blockchain with a 21,000,000 KWD supply cap, ECDSA wallets, SPV Merkle proofs, and a peer-to-peer orderbook exchange.</p>
+    <p style="color:#9ca3af;line-height:1.6;">Open-source SHA-256 Proof-of-Work blockchain with a 210,000,000 KWD supply cap, ECDSA wallets, SPV Merkle proofs, and a peer-to-peer orderbook exchange.</p>
     <div class="btns">
       <a class="btn" style="background:#10b981;color:#000;" href="/explorer">Open Block Explorer &amp; Faucet</a>
       <a class="btn" style="background:#f59e0b;color:#000;" href="/exchange">Open KWD Exchange</a>
@@ -2285,7 +2285,7 @@ def circulating_supply():
     chain = load_chain()
     total_supply = get_total_supply(chain)
     config = load_chain_config()
-    max_supply = float(config.get("max_supply", 21000000))
+    max_supply = float(config.get("max_supply", 210000000))
     remaining = max(0.0, max_supply - total_supply)
     return {
         "total_supply": total_supply,
@@ -3660,4 +3660,5 @@ if __name__ == "__main__":
             server_thread.join(timeout=1)
     except KeyboardInterrupt:
         print("[Startup] Shutting down")
+
 

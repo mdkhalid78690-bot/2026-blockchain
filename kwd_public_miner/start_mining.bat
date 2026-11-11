@@ -1,7 +1,7 @@
 @echo off
-title KWD Remote Miner
+title KWD Community CPU Miner
 echo =======================================================
-echo          KAWAIDCOIN (KWD) COMMUNITY MINER
+echo           KAWAIDCOIN (KWD) COMMUNITY MINER
 echo =======================================================
 
 if not exist my_kwd_wallet.json (
@@ -14,8 +14,8 @@ for /f "tokens=2 delims=:, " %%a in ('findstr "address" my_kwd_wallet.json') do 
 set WALLET=%WALLET:"=%
 
 echo [*] Mining to Address: %WALLET%
-echo [*] Connecting to KWD Seed Node...
+echo [*] Connecting to Mainnet Seed Node: https://kawaidcoin.xyz
 echo.
 
-python kwd_miner.py %WALLET% http://10.51.134.36:5000
+python kwd_remote_miner.py %WALLET% https://kawaidcoin.xyz
 pause
