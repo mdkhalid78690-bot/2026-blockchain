@@ -3579,6 +3579,13 @@ def kwd_exchange_page():
 @app.route("/download/miner", methods=["GET"])
 def download_public_miner():
     from flask import send_file
+    if os.path.exists("KWD_Public_Miner.zip"):
+        return send_file("KWD_Public_Miner.zip", mimetype="application/zip", as_attachment=True, download_name="KWD_Public_Miner.zip")
+    return send_file("kwd_remote_miner.py", as_attachment=True, download_name="kwd_remote_miner.py")
+
+@app.route("/download/miner.py", methods=["GET"])
+def download_public_miner_script():
+    from flask import send_file
     return send_file("kwd_remote_miner.py", as_attachment=True, download_name="kwd_remote_miner.py")
 
 
@@ -3660,5 +3667,6 @@ if __name__ == "__main__":
             server_thread.join(timeout=1)
     except KeyboardInterrupt:
         print("[Startup] Shutting down")
+
 
 
