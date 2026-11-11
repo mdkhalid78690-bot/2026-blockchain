@@ -2,7 +2,17 @@
 *.pem
 wallet*.json
 private_key*
+*.db
+blockchain_data/
 __pycache__/
 *.pyc
 venv/
 .env
+
+*.key
+*.pem
+wallet*.json
+private_key*
+*.db
+venv/
+__pycache__/
