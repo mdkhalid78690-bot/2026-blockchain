@@ -1,8 +1,0 @@
-{
-    "transaction": {
-        "from": "a192baf8d91918c436979a1a387c48e78e819b9c5751f72454bf78a4e7376e06",
-        "to": "f3b77af047145df0510e7c382aa9ed859feade5b25c159a8a7dd63d4fa84af13",
-        "amount": 100
-    },
-    "signature": "80890513bcf63f6db65ada04d6e5f1a7d132b6d88b6f8ffeb652f2488c50e9ac43f1ea9a9bd609cc72ca9d6205d398c07c153b09adad4623f4ce91224d3093e0"
-}
