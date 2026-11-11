@@ -16,3 +16,13 @@ private_key*
 *.db
 venv/
 __pycache__/
+
+backup/
+build/
+dist/
+legacy_archive/
+logs/
+node_*/
+2026 blockchain node*/
+KWD_Blockchain_Alpha_v0.1/
+*.backup*
