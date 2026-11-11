@@ -1,1 +1,2 @@
-requests>=2.25.0
+﻿requests>=2.25.0
+ecdsa>=0.18.0
