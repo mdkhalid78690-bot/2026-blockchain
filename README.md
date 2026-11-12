@@ -35,12 +35,12 @@ pip install -r requirements.txt
 - **Linux / macOS:**
 ```bash
 python generate_wallet.py
-python kwd_remote_miner.py <YOUR_WALLET_ADDRESS> [https://kawaidcoin.xyz](https://kawaidcoin.xyz)
+python kwd_remote_miner.py <YOUR_WALLET_ADDRESS> https://kawaidcoin.xyz
 ```
 
 ## Running a Full Node
 ```bash
-git clone [https://github.com/mdkhalid78690-bot/2026-blockchain.git](https://github.com/mdkhalid78690-bot/2026-blockchain.git)
+git clone https://github.com/mdkhalid78690-bot/2026-blockchain.git
 cd 2026-blockchain
 pip install -r requirements.txt
 python api.py
